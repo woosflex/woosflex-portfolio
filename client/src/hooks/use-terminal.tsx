@@ -17,14 +17,17 @@ export function useTerminal() {
 
   // Available terminal commands with their outputs
   const commands: Record<string, () => string> = {
-    help: () => 'Available commands: about, projects, vision, contact, clear, exit, mellon',
+    help: () => 'Available commands: about, projects, vision, contact, clear, exit, mellon, onepiece, shadow, ally',
     about: () => 'Adnan Raza. I build computationally efficient models of complex biological systems, merging practical software engineering with a forward-looking vision for AI and biological computing.',
     projects: () => 'Featured Projects:\n• TracEon: High-performance genomic data cache\n• AutophiGen: Deprecated phylogenetic analysis automator\n• GCVisualyst: GC content visualization tool\n• RNA-Seq Pipeline: Transitioning to Nextflow implementation\n• GRN Analysis: MS gene regulatory network analysis',
     vision: () => 'My research goal is to apply principles of systems design to the ultimate biological hardware: neurons. I focus on optimizing computational biology at fundamental layers.',
     contact: () => 'Email: adnanraza3435@gmail.com\nLinkedIn: linkedin.com/in/woosflex\nGitHub: github.com/woosflex\nGoogle Scholar: scholar.google.com/citations?user=fuD1FzcAAAAJ',
     clear: () => '',
     exit: () => '',
-    mellon: () => "'The doors of Durin, Lord of Moria. Speak, friend, and enter.'"
+    mellon: () => "'The doors of Durin, Lord of Moria. Speak, friend, and enter.'",
+    onepiece: () => "Ore no nawa Monkey D. Luffy.",
+    shadow: () => "I....  Am.... Atomic!!!...",
+    ally: () => "It is a chance for Faramir, captain of Gondor, to show his quality."
   };
 
   const executeCommand = useCallback((input: string) => {
