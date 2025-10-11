@@ -213,11 +213,12 @@ export function Projects() {
                   ))}
                 </div>
                 <a 
-                  href="/assets/TracEon_proposal.pdf" 
+                  href="https://www.github.com/woosflex/traceon" 
                   className="inline-flex items-center text-primary hover:text-accent font-semibold text-lg transition-all duration-300 hover:translate-x-2"
                   data-testid="link-traceon-proposal"
                 >
-                  View Proposal
+                  <Github className="mr-3 h-5 w-5" />
+                  View GitHub Repo
                   <ExternalLink className="ml-3 h-5 w-5" />
                 </a>
               </div>
