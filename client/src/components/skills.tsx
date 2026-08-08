@@ -1,98 +1,66 @@
-/**
- * Skills Section Component
- * Displays technical skills categorized by domain with interactive hover effects
- */
+import { FadeIn } from '@/components/fade-in';
 
 export function Skills() {
-  // Skill categories with their respective technologies
-  const skillCategories = [
+  const expertise = [
     {
-      category: "Programming/Markup Languages",
-      icon: "💻",
-      skills: ["C" ,"C++", "Python", "R", "Bash", "JavaScript", "LaTeX", "typst"]
+      number: "01",
+      name: "Agentic AI for Biology",
+      description: "Designing autonomous, LLM-driven agent systems that reason over, query, and act on complex biological datasets to accelerate research.",
     },
     {
-      category: "Bioinformatics Tools",
-      icon: "🧬",
-      skills: ["BLAST", "MUSCLE", "Kallisto", "FastQC", "FASTP", "MultiQC", "ETE3", "GATK", "iGraph", "BWA"]
+      number: "02",
+      name: "Systems & Architecture",
+      description: "Low-level programming in Rust and C++, cache design, multi-threading, and high-performance computing infrastructure.",
     },
     {
-      category: "Data Science & ML",
-      icon: "📊",
-      skills: ["Machine Learning", "Data Structures", "Algorithms", "Statistical Analysis", "Data Mining", "NLP"]
+      number: "03",
+      name: "Computational Biology",
+      description: "Sequence analysis, phylogenetics, and RNA-seq pipelines built with BLAST, MUSCLE, Kallisto, FastQC, FASTP, MultiQC, and GATK.",
     },
     {
-      category: "Technologies & Frameworks",
-      icon: "🔧",
-      skills: ["Nextflow", "Docker", "Git", "Linux", "WSL", "High-Performance Computing"]
+      number: "04",
+      name: "Data Science & Analysis",
+      description: "Machine learning, statistical inference, algorithms and data structures, and network analysis using iGraph.",
     },
     {
-      category: "Specialized Areas",
-      icon: "🔬",
-      skills: ["NGS Analysis", "Docking", "Systems Biology", "Computational Biology"]
-    }
+      number: "05",
+      name: "Neuromorphic & Emerging Tech",
+      description: "Brain-inspired computing, neural networks, and biological hardware interfaces bridging digital and organic systems.",
+    },
   ];
 
   return (
-    <section id="skills" className="py-24 px-6 scroll-section">
-      <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6" data-testid="skills-title">
-            Technical Skills
-          </h2>
-          <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed">
-            Comprehensive expertise spanning computational biology, software engineering, and data science.
-          </p>
-          <div className="w-32 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-6 rounded-full"></div>
-        </div>
+    <section id="skills" className="bg-white rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32">
+      <h2
+        className="text-[#0C0C0C] font-black uppercase text-center mb-16 sm:mb-20 md:mb-28"
+        style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
+        data-testid="skills-title"
+      >
+        Expertise
+      </h2>
 
-        {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skillCategories.map((category, categoryIndex) => (
-            <div 
-              key={categoryIndex} 
-              className="project-card rounded-xl p-8 border backdrop-blur-xl"
-              data-testid={`skill-category-${categoryIndex}`}
+      <div className="max-w-5xl mx-auto">
+        {expertise.map((item, i) => (
+          <FadeIn key={item.number} delay={i * 0.1}>
+            <div
+              className="flex items-start gap-6 sm:gap-10 py-8 sm:py-10 md:py-12"
+              style={{ borderBottom: i < expertise.length - 1 ? '1px solid rgba(12, 12, 12, 0.15)' : undefined }}
+              data-testid={`skill-category-${i}`}
             >
-              <div className="space-y-6">
-                {/* Category Header */}
-                <div className="text-center space-y-3">
-                  <div className="text-4xl" data-testid={`skill-icon-${categoryIndex}`}>
-                    {category.icon}
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground" data-testid={`skill-category-title-${categoryIndex}`}>
-                    {category.category}
-                  </h3>
-                </div>
-
-                {/* Skills List */}
-                <div className="flex flex-wrap gap-2 justify-center">
-                  {category.skills.map((skill, skillIndex) => (
-                    <span
-                      key={skillIndex}
-                      className="bg-gradient-to-r from-secondary to-secondary/50 text-foreground px-3 py-2 rounded-lg text-sm font-medium border border-border/50 backdrop-blur-sm hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
-                      data-testid={`skill-${categoryIndex}-${skillIndex}`}
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+              <span className="text-[#0C0C0C] font-black leading-none flex-shrink-0" style={{ fontSize: 'clamp(3rem, 10vw, 140px)' }}>
+                {item.number}
+              </span>
+              <div className="flex flex-col gap-2 pt-2 sm:pt-4">
+                <h3 className="text-[#0C0C0C] font-medium uppercase" style={{ fontSize: 'clamp(1rem, 2.2vw, 2.1rem)' }}>
+                  {item.name}
+                </h3>
+                <p className="text-[#0C0C0C] font-light leading-relaxed max-w-2xl" style={{ fontSize: 'clamp(0.85rem, 1.6vw, 1.25rem)', opacity: 0.6 }}>
+                  {item.description}
+                </p>
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* Additional Info */}
-        <div className="mt-16 text-center">
-          <div className="bg-card/40 rounded-2xl p-8 border border-border/50 backdrop-blur-xl">
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              <span className="text-primary font-semibold">Always Learning:</span> Continuously expanding expertise in 
-              emerging technologies like neuromorphic computing, advanced machine learning techniques, and next-generation 
-              bioinformatics tools to stay at the forefront of computational biology research.
-            </p>
-          </div>
-        </div>
+          </FadeIn>
+        ))}
       </div>
     </section>
   );

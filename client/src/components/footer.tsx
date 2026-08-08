@@ -1,10 +1,11 @@
 /**
  * Footer Component
  * Contact section with social links and Konami code hint
- * Features gradient styling and enhanced visual hierarchy
  */
 
-import { Mail, Github, Linkedin, GraduationCap } from 'lucide-react';
+import { Github, Linkedin, GraduationCap } from 'lucide-react';
+import { FadeIn } from '@/components/fade-in';
+import { ContactButton } from '@/components/contact-button';
 
 export function Footer() {
   const socialLinks = [
@@ -26,53 +27,51 @@ export function Footer() {
   ];
 
   return (
-    <footer className="py-24 px-6 border-t border-border/50 bg-gradient-to-t from-card/20 to-transparent">
-      <div className="max-w-6xl mx-auto">
+    <footer className="py-24 px-5 sm:px-8 md:px-10 border-t border-[#D7E2EA]/10">
+      <div className="max-w-5xl mx-auto">
         <div className="text-center space-y-12">
-          <div className="space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold gradient-text" data-testid="footer-title">
-              Let's Connect
-            </h2>
-            <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed" data-testid="footer-subtitle">
-              Feel free to reach out. I am currently seeking a fully-funded PhD position.
-            </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
-          </div>
-          
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <a 
-              href="mailto:adnanraza3435@gmail.com" 
-              className="btn-primary text-primary-foreground px-10 py-4 rounded-xl font-semibold text-lg shadow-lg inline-flex items-center"
-              data-testid="button-footer-contact"
+          <FadeIn delay={0} y={40}>
+            <h2
+              className="hero-heading font-black uppercase leading-none tracking-tight"
+              style={{ fontSize: 'clamp(2.5rem, 8vw, 100px)' }}
+              data-testid="footer-title"
             >
-              <Mail className="mr-3 h-5 w-5" />
-              Get In Touch
-            </a>
-          </div>
-          
-          <div className="flex justify-center space-x-8">
-            {socialLinks.map((link) => {
-              const Icon = link.icon;
-              return (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110 p-3 rounded-xl hover:bg-primary/10 backdrop-blur-sm"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-testid={`link-${link.label.toLowerCase().replace(' ', '-')}`}
-                >
-                  <Icon className="h-7 w-7" />
-                  <span className="sr-only">{link.label}</span>
-                </a>
-              );
-            })}
-          </div>
-          
-          <div className="text-muted-foreground font-mono opacity-60 space-y-2" data-testid="copyright">
-            <div>© 2025 Adnan Raza • Built with passion for computational biology</div>
-            <div className="text-xs opacity-50">
-              💡 Try the Konami code: ↑↑↓↓←→←→BA
+              Let&apos;s Connect
+            </h2>
+            <p className="text-[#D7E2EA]/60 uppercase tracking-widest text-sm mt-6" data-testid="footer-subtitle">
+              Currently seeking a fully-funded PhD position
+            </p>
+          </FadeIn>
+
+          <FadeIn delay={0.15} y={20}>
+            <ContactButton />
+          </FadeIn>
+
+          <FadeIn delay={0.25} y={20}>
+            <div className="flex justify-center space-x-6">
+              {socialLinks.map((link) => {
+                const Icon = link.icon;
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="text-[#D7E2EA]/60 hover:text-[#D7E2EA] transition-colors duration-200 p-3 rounded-full border-2 border-[#D7E2EA]/20 hover:border-[#D7E2EA]/50"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid={`link-${link.label.toLowerCase().replace(' ', '-')}`}
+                  >
+                    <Icon className="h-6 w-6" />
+                    <span className="sr-only">{link.label}</span>
+                  </a>
+                );
+              })}
+            </div>
+          </FadeIn>
+
+          <div className="text-[#D7E2EA]/40 font-mono text-sm space-y-2" data-testid="copyright">
+            <div>© 2026 Adnan Raza • Built with passion for computational biology</div>
+            <div className="text-xs opacity-70">
+              Try the Konami code: ↑↑↓↓←→←→BA
             </div>
           </div>
         </div>

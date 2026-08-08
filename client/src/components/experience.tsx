@@ -4,10 +4,20 @@
  * Includes role details, organizations, dates, and responsibilities
  */
 
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, ExternalLink } from 'lucide-react';
+import { FadeIn } from '@/components/fade-in';
 
 export function Experience() {
   const experiences = [
+    {
+      role: "Research Intern",
+      organization: "Ahuja Lab, IIIT-Delhi",
+      dates: "September 2025 - Present",
+      duties: [
+        "Solving biology-based problems using Agentic AI, applying autonomous LLM-driven pipelines to computational biology research questions.",
+        "Building low-level, high-performance systems to accelerate genomic data processing at scale."
+      ]
+    },
     {
       role: "Summer Bioinformatics Intern",
       organization: "Jawaharlal Nehru University, India",
@@ -18,43 +28,84 @@ export function Experience() {
     }
   ];
 
+  const publications = [
+    {
+      title: "Cell Reports Publication",
+      link: "https://www.cell.com/cell-reports/fulltext/S2211-1247(26)00081-1",
+    }
+  ];
+
   return (
-    <section id="experience" className="py-24 px-6 scroll-section">
+    <section id="experience" className="py-24 px-5 sm:px-8 md:px-10 scroll-section">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6" data-testid="experience-title">
+        <FadeIn delay={0} y={40}>
+          <h2
+            className="hero-heading font-black uppercase leading-none tracking-tight text-center mb-16 sm:mb-20"
+            style={{ fontSize: 'clamp(2.5rem, 8vw, 100px)' }}
+            data-testid="experience-title"
+          >
             Experience
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
-        </div>
-        
-        <div className="space-y-10">
+        </FadeIn>
+
+        <div className="space-y-6">
           {experiences.map((exp, index) => (
-            <div key={index} className="project-card rounded-xl p-8 border backdrop-blur-xl" data-testid={`experience-${index}`}>
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
-                <div className="space-y-2">
-                  <h3 className="text-2xl font-bold text-foreground" data-testid={`experience-role-${index}`}>
-                    {exp.role}
-                  </h3>
-                  <p className="text-primary font-semibold text-lg" data-testid={`experience-org-${index}`}>
-                    {exp.organization}
-                  </p>
+            <FadeIn key={index} delay={index * 0.1}>
+              <div
+                className="rounded-[24px] border-2 border-[#D7E2EA]/20 p-6 sm:p-8 hover:border-[#D7E2EA]/50 transition-colors"
+                data-testid={`experience-${index}`}
+              >
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-6 gap-4">
+                  <div className="space-y-2">
+                    <h3 className="text-[#D7E2EA] font-medium uppercase text-xl md:text-2xl" data-testid={`experience-role-${index}`}>
+                      {exp.role}
+                    </h3>
+                    <p className="text-primary font-medium text-lg" data-testid={`experience-org-${index}`}>
+                      {exp.organization}
+                    </p>
+                  </div>
+                  <div
+                    className="text-[#D7E2EA] px-4 py-2 rounded-full font-mono text-sm border border-[#D7E2EA]/30 uppercase tracking-wider whitespace-nowrap"
+                    data-testid={`experience-dates-${index}`}
+                  >
+                    {exp.dates}
+                  </div>
                 </div>
-                <div className="bg-gradient-to-r from-primary/20 to-accent/20 text-foreground px-4 py-2 rounded-xl font-mono text-sm border border-primary/30" data-testid={`experience-dates-${index}`}>
-                  {exp.dates}
-                </div>
+                <ul className="text-[#D7E2EA]/70 space-y-4 text-base md:text-lg">
+                  {exp.duties.map((duty, dutyIndex) => (
+                    <li key={dutyIndex} className="flex items-start" data-testid={`experience-duty-${index}-${dutyIndex}`}>
+                      <ChevronRight className="text-primary mt-1 mr-4 flex-shrink-0" />
+                      <span className="leading-relaxed">{duty}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="text-muted-foreground space-y-4 text-lg">
-                {exp.duties.map((duty, dutyIndex) => (
-                  <li key={dutyIndex} className="flex items-start" data-testid={`experience-duty-${index}-${dutyIndex}`}>
-                    <ChevronRight className="text-primary mt-1 mr-4 flex-shrink-0" />
-                    <span className="leading-relaxed">{duty}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            </FadeIn>
           ))}
         </div>
+
+        <FadeIn delay={0.2}>
+          <div className="mt-16">
+            <h3 className="text-[#D7E2EA] uppercase tracking-widest text-sm font-medium mb-6 text-center" data-testid="publications-title">
+              Publications
+            </h3>
+            <div className="space-y-4">
+              {publications.map((pub, index) => (
+                <a
+                  key={index}
+                  href={pub.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border-2 border-[#D7E2EA]/20 hover:border-[#D7E2EA]/50 px-6 py-4 flex items-center justify-between group transition-colors"
+                  data-testid={`publication-${index}`}
+                >
+                  <span className="text-[#D7E2EA] text-base md:text-lg font-medium">{pub.title}</span>
+                  <ExternalLink className="text-primary h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </a>
+              ))}
+            </div>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );
