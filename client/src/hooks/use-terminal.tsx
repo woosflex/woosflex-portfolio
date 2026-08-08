@@ -17,10 +17,14 @@ export function useTerminal() {
 
   // Available terminal commands with their outputs
   const commands: Record<string, () => string> = {
-    help: () => 'Available commands: about, projects, vision, contact, clear, exit, mellon, onepiece, shadow, ally',
-    about: () => 'Adnan Raza. I build computationally efficient models of complex biological systems, merging practical software engineering with a forward-looking vision for AI and biological computing.',
-    projects: () => 'Featured Projects:\n• TracEon: High-performance genomic data cache\n• AutophiGen: Deprecated phylogenetic analysis automator\n• GCVisualyst: GC content visualization tool\n• RNA-Seq Pipeline: Transitioning to Nextflow implementation\n• GRN Analysis: MS gene regulatory network analysis',
-    vision: () => 'My research goal is to apply principles of systems design to the ultimate biological hardware: neurons. I focus on optimizing computational biology at fundamental layers.',
+    help: () => 'Available commands: about, experience, education, projects, opensource, thesis, vision, contact, clear, exit, mellon, onepiece, shadow, ally',
+    about: () => 'Adnan Raza. Computational biologist solving biology-based problems with agentic AI, low-level systems engineering, and high-performance computing.',
+    experience: () => 'Research Intern, Ahuja Lab, IIIT-Delhi (September 2025 - Present)\nSummer Bioinformatics Intern, Jawaharlal Nehru University (May 2025 - July 2025)\nPublication: Cell Reports -- cell.com/cell-reports/fulltext/S2211-1247(26)00081-1',
+    education: () => 'MSc Bioinformatics, Jamia Millia Islamia (August 2024 - May 2026)\nBSc Microbiology, Sharda University (September 2020 - May 2023)',
+    projects: () => 'Featured Projects:\n• TracEon: High-performance genomic data cache (C++, expanding into Rust)\n• GRN Analysis: MS gene regulatory network analysis\n• RNA-Seq Analysis: Nextflow pipeline for RNA-seq quantification and QC\n• iQR DNA: Quantum-secure genomic compression suite, developed under InfraQR -- infraqr.com',
+    opensource: () => 'Open Source:\n• evolf-pipeline (Ahuja Lab): published computational biology pipeline\n• NucXplore: in-development, unpublished\n• TracEon: macOS build fixes',
+    thesis: () => 'Thesis PDF available at /Adnan_Raza_Thesis.pdf',
+    vision: () => 'My research goal is to apply agentic AI and systems-level engineering to biological computation, bridging molecular biology with high-performance systems.',
     contact: () => 'Email: adnanraza3435@gmail.com\nLinkedIn: linkedin.com/in/woosflex\nGitHub: github.com/woosflex\nGoogle Scholar: scholar.google.com/citations?user=fuD1FzcAAAAJ',
     clear: () => '',
     exit: () => '',

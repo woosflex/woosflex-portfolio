@@ -38,25 +38,26 @@ export function Navigation() {
     { href: '#vision', label: 'Vision' },
     { href: '#experience', label: 'Experience' },
     { href: '#education', label: 'Education' },
+    { href: '#open-source', label: 'Open Source' },
     { href: '#skills', label: 'Skills' }
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
-      <div className="max-w-6xl mx-auto px-6 py-4">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/30 backdrop-blur-md border-b border-border/30 shadow-lg">
+      <div className="max-w-6xl mx-auto px-6 md:px-10 py-4 md:py-5">
         <div className="flex items-center justify-between">
-          <div className="text-xl font-bold gradient-text font-mono" data-testid="logo">
+          <div className="text-lg font-bold gradient-text font-mono" data-testid="logo">
             &lt;adnan.raza /&gt;
           </div>
-          
+
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-2">
+          <div className="hidden md:flex md:justify-between md:flex-1 md:ml-16 lg:ml-24">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className={`nav-link text-foreground transition-all duration-300 ${
-                  activeSection === item.href.slice(1) ? 'text-primary bg-primary/10' : ''
+                className={`text-[#D7E2EA] uppercase tracking-wider font-medium text-sm lg:text-base hover:opacity-70 transition-opacity duration-200 ${
+                  activeSection === item.href.slice(1) ? 'opacity-100 text-primary' : ''
                 }`}
                 data-testid={`nav-link-${item.label.toLowerCase()}`}
               >

@@ -1,53 +1,38 @@
-/**
- * Vision Section Component
- * Presents research vision and future directions in computational biology
- * Features glassmorphism design and structured future research areas
- */
+import { FadeIn } from '@/components/fade-in';
+import { AnimatedText } from '@/components/animated-text';
+import { ContactButton } from '@/components/contact-button';
 
 export function Vision() {
   return (
-    <section id="vision" className="py-24 px-6 section-alt scroll-section">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6" data-testid="vision-title">
-            Research Vision
-          </h2>
-          <p className="text-muted-foreground text-xl">
-            Bridging computational efficiency with biological complexity
-          </p>
-          <div className="w-32 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-6 rounded-full"></div>
-        </div>
-        
-        <div className="prose prose-invert max-w-none">
-          <div className="bg-card/40 rounded-2xl p-10 border border-border/50 space-y-8 backdrop-blur-xl">
-            <p className="text-muted-foreground leading-relaxed text-xl" data-testid="vision-paragraph-1">
-              My current work is centered on optimizing the fundamental layers of computational biology, focusing on how data is stored, accessed, and processed. My project, TracEon, serves as the first step in exploring this space, with a clear roadmap to investigate concurrency, domain-specific querying, and advanced data structures suitable for complex biological questions.
-            </p>
-            
-            <p className="text-muted-foreground leading-relaxed text-xl" data-testid="vision-paragraph-2">
-              I believe that true progress in biological computing will come from a deep, synergistic understanding of both biological systems and computational architectures. My research goal is to apply principles of systems design to the ultimate biological hardware: neurons.
-            </p>
-            
-            <div className="bg-gradient-to-br from-secondary/50 to-secondary/30 rounded-xl p-8 mt-10 border border-border/30 backdrop-blur-sm">
-              <h3 className="text-2xl font-bold gradient-text mb-8" data-testid="future-directions-title">
-                Future Research Directions
-              </h3>
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="space-y-4 p-6 bg-card/30 rounded-xl border border-border/30">
-                  <h4 className="font-bold text-primary text-xl">Neuromorphic Computing</h4>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Exploring brain-inspired computational architectures for efficient biological data processing.
-                  </p>
-                </div>
-                <div className="space-y-4 p-6 bg-card/30 rounded-xl border border-border/30">
-                  <h4 className="font-bold text-accent text-xl">Biological Hardware Interfaces</h4>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Developing computational models that bridge digital and biological systems.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+    <section id="vision" className="min-h-screen flex flex-col items-center justify-center px-5 sm:px-8 md:px-10 py-20 relative" style={{ overflowX: 'clip' }}>
+      <FadeIn delay={0} y={40}>
+        <h2
+          className="hero-heading font-black uppercase leading-none tracking-tight text-center"
+          style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
+          data-testid="vision-title"
+        >
+          About me
+        </h2>
+      </FadeIn>
+
+      <div className="flex flex-col items-center gap-10 sm:gap-14 md:gap-16 mt-10 sm:mt-14 md:mt-16">
+        <AnimatedText
+          text="I'm a computational biologist bridging molecular biology with high-performance systems. My work started with TracEon, a C++ in-memory cache for accelerating genomic data access, and has since grown into solving biology-based problems with agentic AI as a research intern at Ahuja Lab, IIIT-Delhi. I focus on low-level programming, systems architecture, and building autonomous, LLM-driven pipelines that reason over biological data."
+          className="text-[#D7E2EA] font-medium text-center leading-relaxed max-w-[560px]"
+          style={{ fontSize: 'clamp(1rem, 2vw, 1.35rem)' }}
+        />
+
+        <div className="flex flex-col sm:flex-row gap-6 items-center">
+          <ContactButton />
+          <a
+            href="/Adnan_Raza_Thesis.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#D7E2EA] uppercase tracking-widest text-sm border-b border-[#D7E2EA]/40 hover:opacity-70 transition-opacity duration-200 pb-1"
+            data-testid="link-thesis"
+          >
+            Read My Thesis
+          </a>
         </div>
       </div>
     </section>
