@@ -13,7 +13,7 @@ function Character({ char, index, total, progress }: { char: string; index: numb
   const opacity = useTransform(progress, [start, end], [0.2, 1]);
 
   return (
-    <span className="relative inline-block">
+    <span aria-hidden="true" className="relative inline-block">
       <span className="invisible">{char}</span>
       <motion.span style={{ opacity }} className="absolute left-0 top-0">
         {char}
@@ -33,6 +33,7 @@ export function AnimatedText({ text, className, style }: AnimatedTextProps) {
 
   return (
     <p ref={ref} className={className} style={style}>
+      <span className="sr-only">{text}</span>
       {characters.map((char, i) => (
         <Character key={i} char={char === " " ? " " : char} index={i} total={characters.length} progress={scrollYProgress} />
       ))}

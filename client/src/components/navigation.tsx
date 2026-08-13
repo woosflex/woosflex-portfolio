@@ -43,12 +43,12 @@ export function Navigation() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/30 backdrop-blur-md border-b border-border/30 shadow-lg">
-      <div className="max-w-6xl mx-auto px-6 md:px-10 py-4 md:py-5">
+    <nav aria-label="Primary navigation" className="site-nav fixed top-0 left-0 right-0 z-50">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10 py-3.5 md:py-4">
         <div className="flex items-center justify-between">
-          <div className="text-lg font-bold gradient-text font-mono" data-testid="logo">
+          <a href="#hero" className="brand-mark text-base sm:text-lg font-bold font-mono" aria-label="Adnan Raza, back to top" data-testid="logo">
             &lt;adnan.raza /&gt;
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex md:justify-between md:flex-1 md:ml-16 lg:ml-24">
@@ -56,9 +56,10 @@ export function Navigation() {
               <a
                 key={item.href}
                 href={item.href}
-                className={`text-[#D7E2EA] uppercase tracking-wider font-medium text-sm lg:text-base hover:opacity-70 transition-opacity duration-200 ${
-                  activeSection === item.href.slice(1) ? 'opacity-100 text-primary' : ''
+                className={`nav-item text-[#D7E2EA] uppercase tracking-wider font-medium text-xs lg:text-sm ${
+                  activeSection === item.href.slice(1) ? 'is-active' : ''
                 }`}
+                aria-current={activeSection === item.href.slice(1) ? 'location' : undefined}
                 data-testid={`nav-link-${item.label.toLowerCase()}`}
               >
                 {item.label}
@@ -68,8 +69,11 @@ export function Navigation() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-foreground hover:text-primary p-2 rounded-lg hover:bg-primary/10 transition-all duration-300"
+            className="md:hidden inline-flex min-h-11 min-w-11 items-center justify-center text-foreground rounded-full border border-[#D7E2EA]/20 bg-[#0C0C0C]/70 transition-colors hover:border-primary/60 hover:text-primary"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
             data-testid="mobile-menu-button"
           >
             {isMenuOpen ? <X className="text-xl" /> : <Menu className="text-xl" />}
@@ -78,13 +82,16 @@ export function Navigation() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-border/50 pt-4 bg-card/50 rounded-lg backdrop-blur-sm">
+          <div id="mobile-navigation" className="mobile-nav md:hidden mt-3 p-2 rounded-2xl">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="block py-3 px-4 text-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-all duration-300"
+                className={`block min-h-12 py-3 px-4 text-sm uppercase tracking-wider text-foreground rounded-xl transition-colors hover:text-primary hover:bg-primary/10 ${
+                  activeSection === item.href.slice(1) ? 'text-primary bg-primary/10' : ''
+                }`}
                 onClick={() => setIsMenuOpen(false)}
+                aria-current={activeSection === item.href.slice(1) ? 'location' : undefined}
                 data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
               >
                 {item.label}

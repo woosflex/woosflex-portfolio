@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-13T00:00:00+05:30",
+  "title": "Design System: Adnan Raza Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "deep-space-black": {
+        "role": "neutral",
+        "displayName": "Deep Space Black",
+        "canonical": "#0C0C0C",
+        "tonalRamp": ["#000000", "#0C0C0C", "hsl(222, 14%, 8%)", "hsl(217, 33%, 12%)"]
+      },
+      "ion-mist": {
+        "role": "neutral",
+        "displayName": "Ion Mist",
+        "canonical": "#D7E2EA",
+        "tonalRamp": ["hsl(215, 20.2%, 70%)", "#D7E2EA", "hsl(210, 40%, 96%)", "hsl(210, 40%, 98%)"]
+      },
+      "bioelectric-cyan": {
+        "role": "primary",
+        "displayName": "Bioelectric Cyan",
+        "canonical": "hsl(199, 89%, 52%)",
+        "tonalRamp": ["hsl(199, 89%, 52% / 0.05)", "hsl(199, 89%, 52% / 0.3)", "hsl(199, 89%, 52%)"]
+      },
+      "neural-violet": {
+        "role": "secondary",
+        "displayName": "Neural Violet",
+        "canonical": "hsl(282, 85%, 65%)",
+        "tonalRamp": ["hsl(282, 85%, 65% / 0.05)", "hsl(282, 85%, 65% / 0.3)", "hsl(282, 85%, 65%)"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Monument",
+        "purpose": "Hero identity and full-width chapter titles."
+      },
+      "headline": {
+        "displayName": "Research Heading",
+        "purpose": "Project, experience, and expertise titles."
+      },
+      "body": {
+        "displayName": "Narrative",
+        "purpose": "Readable project and research explanations."
+      },
+      "label": {
+        "displayName": "Signal Label",
+        "purpose": "Navigation, categories, tags, and actions."
+      },
+      "mono": {
+        "displayName": "Technical Readout",
+        "purpose": "Terminal language and technical metadata."
+      }
+    },
+    "shadows": [
+      {
+        "name": "bioelectric-glow",
+        "value": "0 0 20px hsl(199, 89%, 52% / 0.3)",
+        "purpose": "Focused energy around active technical elements."
+      },
+      {
+        "name": "neural-glow",
+        "value": "0 0 20px hsl(282, 85%, 65% / 0.3)",
+        "purpose": "Alternating violet energy state."
+      },
+      {
+        "name": "card-lift",
+        "value": "0 20px 40px hsl(0 0% 0% / 0.3)",
+        "purpose": "Structural separation for a hovered major card."
+      },
+      {
+        "name": "circuit-depth",
+        "value": "0 15px 35px rgba(0, 0, 0, 0.4)",
+        "purpose": "Resting depth for translucent circuit surfaces."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-cinematic",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Card lift and navigational movement."
+      },
+      {
+        "name": "fade-up",
+        "value": "0.8s ease-out",
+        "purpose": "Primary section and content entrance."
+      },
+      {
+        "name": "fade-scale",
+        "value": "0.6s ease-out",
+        "purpose": "Compact focal-element entrance."
+      },
+      {
+        "name": "signal-shift",
+        "value": "3s ease infinite",
+        "purpose": "Slow movement within cyan-violet signal gradients."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "2xl", "value": "1536px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Contact Button",
+      "kind": "button",
+      "refersTo": "button-contact",
+      "description": "Primary luminous pill for direct contact.",
+      "html": "<a class=\"ds-contact\" href=\"#\">CONTACT ME</a>",
+      "css": ".ds-contact { display:inline-flex; align-items:center; justify-content:center; border-radius:9999px; color:#fff; padding:12px 32px; font:500 14px Kanit,sans-serif; letter-spacing:.1em; text-transform:uppercase; background:linear-gradient(123deg,#18011F 7%,#B600A8 37%,#7621B0 72%,#BE4C00 100%); box-shadow:0 4px 4px rgba(181,1,167,.25),4px 4px 12px #7721B1 inset; outline:2px solid #fff; outline-offset:-3px; }"
+    },
+    {
+      "name": "Outline Project Action",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Quiet secondary pill that preserves project hierarchy.",
+      "html": "<a class=\"ds-outline\" href=\"#\">VIEW ON GITHUB</a>",
+      "css": ".ds-outline { display:inline-flex; align-items:center; justify-content:center; border:2px solid #D7E2EA; border-radius:9999px; color:#D7E2EA; padding:12px 32px; font:500 14px Kanit,sans-serif; letter-spacing:.1em; text-transform:uppercase; background:transparent; transition:background-color .2s; } .ds-outline:hover { background:rgb(215 226 234 / .1); }"
+    },
+    {
+      "name": "Technical Record Card",
+      "kind": "card",
+      "refersTo": "card-dark",
+      "description": "Rounded, bordered container for experience and open-source records.",
+      "html": "<article class=\"ds-record\"><h3>TRACEEON</h3><p>High-performance genomic data infrastructure.</p></article>",
+      "css": ".ds-record { border:2px solid rgb(215 226 234 / .2); border-radius:24px; background:transparent; color:#D7E2EA; padding:32px; font-family:Kanit,sans-serif; transition:border-color .2s; } .ds-record:hover { border-color:rgb(215 226 234 / .5); } .ds-record h3 { margin:0 0 8px; font-size:28px; font-weight:500; text-transform:uppercase; } .ds-record p { margin:0; max-width:65ch; color:rgb(215 226 234 / .8); font-weight:300; line-height:1.625; }"
+    },
+    {
+      "name": "Technical Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Non-interactive project technology label.",
+      "html": "<span class=\"ds-chip\">RUST</span>",
+      "css": ".ds-chip { display:inline-flex; border:1px solid rgb(215 226 234 / .3); border-radius:9999px; color:#D7E2EA; padding:8px 16px; font:500 12px Kanit,sans-serif; letter-spacing:.1em; text-transform:uppercase; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Cinematic Systems Observatory",
+    "overview": "A quirky, cinematic, futuristic scientific observatory where biological intelligence, computational machinery, and verifiable engineering work feel alive. Layered atmosphere creates depth while scale, overlap, contrast, and selective elevation direct attention through the portfolio.",
+    "keyCharacteristics": [
+      "Monumental uppercase typography",
+      "Sparse bioelectric cyan and neural violet signals",
+      "Living 3D particle environment",
+      "Rounded overlapping cinematic chapters",
+      "Technical mono readouts grounded in evidence"
+    ],
+    "rules": [
+      {
+        "name": "The Signal, Not Wallpaper Rule",
+        "body": "Cyan and violet identify energy, state, and connection; broad neutral fields preserve their meaning.",
+        "section": "colors"
+      },
+      {
+        "name": "The Monument and Readout Rule",
+        "body": "Kanit creates the monument; JetBrains Mono supplies literal technical readouts.",
+        "section": "typography"
+      },
+      {
+        "name": "The Eye-Path Rule",
+        "body": "Elevation identifies the current focal point or next action and is removed when it no longer clarifies hierarchy.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Preserve the contrast between cinematic spectacle and inspectable evidence.",
+      "Use scale, overlap, tonal chapters, and selective elevation to create a clear eye path.",
+      "Keep cyan and violet attached to signals, biological energy, and computational connection.",
+      "Use fluid type and responsive spacing so monumental hierarchy survives small screens."
+    ],
+    "donts": [
+      "Do not flatten the interface into a generic grid of same-sized cards.",
+      "Do not distribute glow, shadow, blur, or 3D effects evenly.",
+      "Do not introduce unrelated hues without deliberately redefining the system.",
+      "Do not fabricate scientific imagery, metrics, endorsements, or claims."
+    ]
+  }
+}
