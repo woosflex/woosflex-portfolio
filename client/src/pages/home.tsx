@@ -28,7 +28,7 @@ export default function Home() {
   }, [konamiActivated, terminal, resetKonami]);
 
   return (
-    <div className="min-h-screen text-foreground relative bg-transparent" style={{ overflowX: 'clip' }}>
+    <main className="min-h-screen text-foreground relative bg-transparent" style={{ overflowX: 'clip' }}>
       {/* Dynamic full-screen WebGL particle morphing background */}
       <ThreeBackground />
 
@@ -55,6 +55,6 @@ export default function Home() {
           onClose={terminal.close}
         />
       </div>
-    </div>
+    </main>
   );
 }

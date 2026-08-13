@@ -33,14 +33,11 @@ export function Footer() {
           <FadeIn delay={0} y={40}>
             <h2
               className="hero-heading font-black uppercase leading-none tracking-tight"
-              style={{ fontSize: 'clamp(2.5rem, 8vw, 100px)' }}
+              style={{ fontSize: 'clamp(3rem, 8vw, 10rem)' }}
               data-testid="footer-title"
             >
               Let&apos;s Connect
             </h2>
-            <p className="text-[#D7E2EA]/60 uppercase tracking-widest text-sm mt-6" data-testid="footer-subtitle">
-              Currently seeking a fully-funded PhD position
-            </p>
           </FadeIn>
 
           <FadeIn delay={0.15} y={20}>
@@ -68,9 +65,9 @@ export function Footer() {
             </div>
           </FadeIn>
 
-          <div className="text-[#D7E2EA]/40 font-mono text-sm space-y-2" data-testid="copyright">
+          <div className="text-[#D7E2EA]/70 font-mono text-sm space-y-2" data-testid="copyright">
             <div>© 2026 Adnan Raza • Built with passion for computational biology</div>
-            <div className="text-xs opacity-70">
+            <div className="text-xs text-[#D7E2EA]/70">
               Try the Konami code: ↑↑↓↓←→←→BA
             </div>
           </div>
