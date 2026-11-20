@@ -21,13 +21,10 @@ export function Skills() {
               className="rounded-3xl border border-[#D7E2EA]/20 bg-card/40 p-6 sm:p-8 md:p-10 hover:border-primary/50 transition-colors"
               data-testid={`skill-category-${i}`}
             >
-              <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-4 mb-6 pb-4 border-b border-[#D7E2EA]/10">
+              <div className="mb-6 pb-4 border-b border-[#D7E2EA]/10">
                 <h3 className="text-[#D7E2EA] font-semibold uppercase text-lg sm:text-xl md:text-2xl">
                   {category.title}
                 </h3>
-                <span className="font-mono text-xs text-primary uppercase tracking-widest">
-                  Category {String(i + 1).padStart(2, '0')}
-                </span>
               </div>
 
               <div className="flex flex-wrap gap-2.5 sm:gap-3" aria-label={`${category.title} items`}>

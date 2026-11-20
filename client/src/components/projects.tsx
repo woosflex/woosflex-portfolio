@@ -107,40 +107,40 @@ function ProjectCard({ project, index, total }: { project: ProjectItem; index: n
 
           {/* Highlight for TracEon Architecture & Benchmark */}
           {isTracEon && project.benchmarkHighlight && (
-            <div className="mb-6 p-5 sm:p-6 rounded-2xl border border-primary/40 bg-primary/5 backdrop-blur-sm space-y-4">
+            <div className="my-6 py-4 border-y border-primary/25 space-y-3">
               <div className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-widest font-semibold">
-                <Zap className="h-4 w-4" />
+                <Zap className="h-3.5 w-3.5" />
                 Verified Benchmark Performance (v2.3.0 Release)
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="p-3.5 rounded-xl border border-primary/20 bg-[#0C0C0C]/80">
-                  <div className="text-xl sm:text-2xl font-bold font-mono text-primary">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                <div>
+                  <div className="text-2xl sm:text-3xl font-bold font-mono text-primary tabular-nums">
                     99.22M
                   </div>
-                  <div className="text-xs text-[#D7E2EA]/70 font-mono mt-1">Reads / Ops per second</div>
+                  <div className="text-xs text-[#D7E2EA]/70 font-mono mt-0.5">Reads / Ops per second</div>
                 </div>
-                <div className="p-3.5 rounded-xl border border-primary/20 bg-[#0C0C0C]/80">
-                  <div className="text-xl sm:text-2xl font-bold font-mono text-primary">
+                <div className="sm:pl-6 sm:border-l border-primary/20">
+                  <div className="text-2xl sm:text-3xl font-bold font-mono text-primary tabular-nums">
                     9.61×
                   </div>
-                  <div className="text-xs text-[#D7E2EA]/70 font-mono mt-1">Read-scaling at 14 threads</div>
+                  <div className="text-xs text-[#D7E2EA]/70 font-mono mt-0.5">Read-scaling at 14 threads</div>
                 </div>
-                <div className="p-3.5 rounded-xl border border-primary/20 bg-[#0C0C0C]/80">
-                  <div className="text-xl sm:text-2xl font-bold font-mono text-primary">
+                <div className="sm:pl-6 sm:border-l border-primary/20">
+                  <div className="text-2xl sm:text-3xl font-bold font-mono text-primary tabular-nums">
                     0.128 µs
                   </div>
-                  <div className="text-xs text-[#D7E2EA]/70 font-mono mt-1">Median latency per op</div>
+                  <div className="text-xs text-[#D7E2EA]/70 font-mono mt-0.5">Median latency per op</div>
                 </div>
               </div>
-              <p className="font-mono text-xs text-[#D7E2EA]/60 leading-normal border-t border-primary/15 pt-3">
+              <p className="font-mono text-xs text-[#D7E2EA]/60 leading-normal pt-1">
                 {project.benchmarkHighlight.environment} Clearly labeled as results from a particular benchmark environment, not universal performance guarantees.
               </p>
             </div>
           )}
 
           {/* Contribution Statement */}
-          <div className="mb-6 p-4 sm:p-5 rounded-2xl border border-[#D7E2EA]/15 bg-white/[0.02]">
-            <span className="font-mono text-xs text-primary uppercase tracking-wider block mb-1.5 font-semibold">
+          <div className="mb-6 pl-4 border-l-2 border-primary/50 space-y-1">
+            <span className="font-mono text-xs text-primary uppercase tracking-wider block font-semibold">
               My Contribution
             </span>
             <p className="text-sm sm:text-base text-[#D7E2EA]/85 leading-relaxed font-light">

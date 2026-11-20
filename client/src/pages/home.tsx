@@ -1,7 +1,6 @@
 import { useEffect, lazy, Suspense } from 'react';
 import { Navigation } from '@/components/navigation';
 import { Hero } from '@/components/hero';
-import { Marquee } from '@/components/marquee';
 import { Vision } from '@/components/vision';
 import { Skills } from '@/components/skills';
 import { Projects } from '@/components/projects';
@@ -55,7 +54,6 @@ export default function Home() {
 
         {/* Main content sections matching Section 4 hierarchy */}
         <Hero />
-        <Marquee />
         <Vision />
         <Skills />
         <Projects />

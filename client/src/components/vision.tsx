@@ -1,5 +1,5 @@
+import { ArrowUpRight } from 'lucide-react';
 import { FadeIn } from '@/components/fade-in';
-import { ContactButton } from '@/components/contact-button';
 import { portfolioData } from '@/data/portfolio';
 
 export function Vision() {
@@ -29,16 +29,16 @@ export function Vision() {
           ))}
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-6 items-center pt-4">
-          <ContactButton />
+        <div className="pt-4">
           <a
             href={about.thesis.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#D7E2EA] uppercase tracking-widest text-sm border-b border-[#D7E2EA]/40 hover:border-primary hover:text-primary transition-colors pb-1 font-mono"
+            className="inline-flex items-center gap-2 text-[#D7E2EA] uppercase tracking-widest text-sm border-b border-[#D7E2EA]/40 hover:border-primary hover:text-primary transition-colors pb-1 font-mono group"
             data-testid="link-thesis"
           >
-            {about.thesis.label}
+            <span>{about.thesis.label}</span>
+            <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
         </div>
       </div>
