@@ -9,6 +9,17 @@ export interface ProjectPipeline {
   steps: PipelineStep[];
 }
 
+export interface TechnicalHighlightItem {
+  category: string;
+  title: string;
+  detail: string;
+}
+
+export interface TelemetrySpec {
+  label: string;
+  value: string;
+}
+
 export interface ProjectItem {
   id: string;
   number: string;
@@ -16,8 +27,9 @@ export interface ProjectItem {
   category: string;
   description: string;
   contribution: string;
+  contributionPillars?: string[];
   technologies: string[];
-  technicalHighlights: string[];
+  technicalHighlights: TechnicalHighlightItem[];
   pipeline: ProjectPipeline;
   links: {
     github?: string;
@@ -27,9 +39,14 @@ export interface ProjectItem {
   };
   benchmarkHighlight?: {
     opsPerSec: string;
+    opsValue?: string;
     scaling: string;
+    scalingMultiplier?: number;
     latency: string;
     environment: string;
+    singleThreadBaseline?: string;
+    scalingEfficiency?: string;
+    telemetrySpecs?: TelemetrySpec[];
   };
 }
 
@@ -202,14 +219,45 @@ export const portfolioData = {
         "TracEon is a C++20 genomic data caching library designed around efficient memory usage, concurrent access and high-throughput sequence data processing.",
       contribution:
         "I designed the architecture and implemented its core functionality, including zero-copy data access, lock-free concurrent reads, SIMD-accelerated parsing, compressed caching and integrity verification.",
+      contributionPillars: [
+        "Core C++20 Architecture",
+        "Zero-Copy Memory Arena",
+        "Lock-Free Snapshot Engine",
+        "AVX2 & NEON SIMD Kernels",
+        "LZ4 & CRC32C Storage"
+      ],
       technologies: ["C++20", "SIMD (AVX2, NEON)", "LZ4", "CRC32C", "CMake", "Docker"],
       technicalHighlights: [
-        "Arena-backed storage and zero-copy access through std::string_view.",
-        "Concurrent read access using C++20 atomics and immutable cache snapshots.",
-        "SIMD-accelerated FASTA/FASTQ parsing with AVX2, NEON and portable scalar fallback.",
-        "LZ4-based compressed binary caching and memory-mapped cache loading.",
-        "CRC32C integrity verification and workload-specific indexing modes.",
-        "Optional POSIX TCP-based remote read service and Docker-based testbed."
+        {
+          category: "Memory",
+          title: "Zero-Copy Arena",
+          detail: "Arena-backed storage and zero-copy string access through std::string_view slices avoiding heap allocations."
+        },
+        {
+          category: "Concurrency",
+          title: "Lock-Free Reads",
+          detail: "C++20 atomics and immutable cache snapshots delivering 9.61× parallel speedup at 14 threads."
+        },
+        {
+          category: "SIMD Kernels",
+          title: "Hardware Vectorisation",
+          detail: "Vectorised FASTA/FASTQ sequence parsers with AVX2 and NEON targets plus scalar fallback."
+        },
+        {
+          category: "Compression",
+          title: "LZ4 Binary Caching",
+          detail: "LZ4-based binary block caching and memory-mapped cache loading for ultra-fast startup."
+        },
+        {
+          category: "Integrity",
+          title: "CRC32C Verification",
+          detail: "Streaming hardware-accelerated integrity verification and workload-specific indexing modes."
+        },
+        {
+          category: "Services",
+          title: "Remote Read Testbed",
+          detail: "Optional POSIX TCP-based remote read service with an isolated Docker-based reproducibility testbed."
+        }
       ],
       pipeline: {
         type: 'flow',
@@ -228,9 +276,20 @@ export const portfolioData = {
       },
       benchmarkHighlight: {
         opsPerSec: "~99.22 million reads/ops/sec",
+        opsValue: "99.22M",
         scaling: "9.61× read-scaling at 14 threads",
+        scalingMultiplier: 9.61,
         latency: "0.128 µs median latency per operation",
-        environment: "Host: Intel Core Ultra 5 125H (14 cores / 18 threads), Linux x86_64, GCC 16.2.1, Release C++20 build."
+        environment: "Host: Intel Core Ultra 5 125H (14 cores / 18 threads) · Linux x86_64 · GCC 16.2.1 (-O3 C++20 Release)",
+        singleThreadBaseline: "10.32M ops/s",
+        scalingEfficiency: "68.6%",
+        telemetrySpecs: [
+          { label: "Host CPU", value: "Intel Core Ultra 5 125H (14C / 18T · 4P + 8E + 2LPE)" },
+          { label: "Platform", value: "Linux x86_64 (Kernel 6.12)" },
+          { label: "Toolchain", value: "GCC 16.2.1 (-O3 -march=native C++20 Release)" },
+          { label: "Workload", value: "Multi-threaded in-memory read suite (14 worker threads)" },
+          { label: "Verification", value: "Deterministic microbenchmark harness" }
+        ]
       }
     },
     {
@@ -242,12 +301,34 @@ export const portfolioData = {
         "A computational workflow infrastructure project developed at IIIT Delhi to support biological research and drug-discovery workflows.",
       contribution:
         "Developed a Docker-based microservice component, engineered a local Nextflow pipeline, contributed to PostgreSQL database schema design, and integrated computational modules into a robust research workflow.",
+      contributionPillars: [
+        "Docker Microservice Runner",
+        "Nextflow Pipeline DAG",
+        "PostgreSQL Relational Schema",
+        "Reproducible Research Integration"
+      ],
       technologies: ["Python", "Docker", "Nextflow", "PostgreSQL"],
       technicalHighlights: [
-        "Containerised Docker microservice for isolated task execution.",
-        "Local Nextflow DAG pipeline orchestrating multi-stage computational tasks.",
-        "Relational schema design in PostgreSQL for structured biological data persistence.",
-        "Reproducible end-to-end research workflow integration."
+        {
+          category: "Containerisation",
+          title: "Isolated Docker Runner",
+          detail: "Containerised microservice architecture ensuring sandboxed execution for biological tasks."
+        },
+        {
+          category: "Workflow",
+          title: "Nextflow DAG Orchestrator",
+          detail: "Local multi-stage computational pipeline with resume capabilities and process isolation."
+        },
+        {
+          category: "Data Modeling",
+          title: "PostgreSQL Schema",
+          detail: "Relational schema design structured for persistent biological entities and query efficiency."
+        },
+        {
+          category: "Integration",
+          title: "End-to-End Pipeline",
+          detail: "Robust pipeline linking molecular screening modules into a unified research workflow."
+        }
       ],
       pipeline: {
         type: 'flow',
@@ -271,13 +352,39 @@ export const portfolioData = {
         "A collaborative effort to port and optimise computational components from Python to Rust for scalable microscopy and sequence data processing.",
       contribution:
         "Engineered Python-to-Rust integration using maturin, resolved numerical stability issues in Hu-moment computation, implemented deterministic stain normalisation, and optimised Nextflow per-tile feature extraction.",
+      contributionPillars: [
+        "maturin / PyO3 FFI Bridge",
+        "Rust Numerical Kernels",
+        "Deterministic Normalisation",
+        "Nextflow Tiling Engine"
+      ],
       technologies: ["Python", "Rust", "maturin", "Nextflow"],
       technicalHighlights: [
-        "Zero-overhead Python bindings to high-performance Rust kernels via maturin.",
-        "Optimised Hu-moment computation routines with deterministic numerical output.",
-        "Deterministic stain normalisation algorithm implementation.",
-        "Scalable per-tile feature extraction pipeline built in Nextflow.",
-        "Checksum-verified demonstration workflows and model-artifact tracking."
+        {
+          category: "FFI Bridge",
+          title: "Zero-Overhead Bindings",
+          detail: "Direct C-ABI Rust bindings via maturin and PyO3 exposing native performance to Python."
+        },
+        {
+          category: "Numerics",
+          title: "Hu-Moment Invariance",
+          detail: "Stabilised geometric moment calculations guaranteeing cross-platform numerical reproducibility."
+        },
+        {
+          category: "Image Processing",
+          title: "Stain Normalisation",
+          detail: "Deterministic biological stain normalisation preventing optical batch variability."
+        },
+        {
+          category: "Orchestration",
+          title: "Nextflow Tiling Pipeline",
+          detail: "Scalable per-tile feature extraction workflow distributing microscopy tile analysis."
+        },
+        {
+          category: "Provenance",
+          title: "Artifact Tracking",
+          detail: "Checksum-verified pipeline runs with full model-artifact and manifest tracking."
+        }
       ],
       pipeline: {
         type: 'flow',
@@ -301,11 +408,29 @@ export const portfolioData = {
         "A sequencing-read preprocessing workflow integrating FastQC and fastp for quality assessment and filtering of raw sequencing data.",
       contribution:
         "Designed and implemented a reproducible command-line workflow for automated quality assessment, read filtering, adapter trimming, and preprocessing summary generation. (Coursework exposure included Kallisto and Minimap2).",
+      contributionPillars: [
+        "Reproducible CLI Pipeline",
+        "FastQC Quality Gates",
+        "fastp Read Filtering",
+        "Summary Reporting"
+      ],
       technologies: ["Python", "FastQC", "fastp", "Shell"],
       technicalHighlights: [
-        "Automated quality control assessment of raw high-throughput sequencing reads.",
-        "High-performance read filtering, poly-G/adapter trimming, and error correction with fastp.",
-        "Consolidated QC reporting and reproducible command-line workflow structure."
+        {
+          category: "Quality Control",
+          title: "Phred Score Inspection",
+          detail: "Automated per-base quality scoring and adapter contamination detection with FastQC."
+        },
+        {
+          category: "Filtering",
+          title: "Poly-G & Error Correction",
+          detail: "High-throughput read filtering, low-quality trimming, and poly-G tail removal via fastp."
+        },
+        {
+          category: "Automation",
+          title: "Consolidated QC Pipeline",
+          detail: "Structured command-line workflow generating unified multi-sample summary reports."
+        }
       ],
       pipeline: {
         type: 'flow',
@@ -329,11 +454,28 @@ export const portfolioData = {
         "An interactive visualisation application for exploring GC-content data across sliding genomic windows to support genomic data interpretation.",
       contribution:
         "Developed the R package and Shiny web application to compute sliding-window GC-content distributions and generate interactive visualisations.",
+      contributionPillars: [
+        "Sliding-Window Algorithm",
+        "Interactive Shiny Dashboard",
+        "Dynamic ggplot2 Visuals"
+      ],
       technologies: ["R", "ggplot2", "Shiny"],
       technicalHighlights: [
-        "Sliding-window algorithm for nucleotide sequence composition calculation.",
-        "Dynamic plotting of regional GC-skew and content variations using ggplot2.",
-        "Reactive interactive UI built with R Shiny for exploratory sequence inspection."
+        {
+          category: "Algorithms",
+          title: "Sliding-Window Ratio",
+          detail: "Configurable sliding-window algorithm computing nucleotide sequence composition."
+        },
+        {
+          category: "Visualisation",
+          title: "Dynamic GC-Skew Curves",
+          detail: "Real-time generation of regional GC-skew and nucleotide distribution plots with ggplot2."
+        },
+        {
+          category: "Application",
+          title: "Reactive Shiny UI",
+          detail: "Reactive web application enabling parameter tuning and exploratory sequence inspection."
+        }
       ],
       pipeline: {
         type: 'waveform',
@@ -357,11 +499,34 @@ export const portfolioData = {
         "A computational analysis workflow involving public GEO datasets, expression normalisation, differential expression analysis, gene regulatory network reconstruction and topological analysis.",
       contribution:
         "Built the end-to-end analysis pipeline analysing Multiple Sclerosis expression data across 13 GEO datasets utilising mutual information and network topology.",
+      contributionPillars: [
+        "13 GEO Dataset Ingestion",
+        "DESeq2 Normalisation",
+        "ARACNe Mutual Information",
+        "Network Hub Topology"
+      ],
       technologies: ["R", "DESeq2", "ARACNe", "Network Analysis"],
       technicalHighlights: [
-        "Cross-dataset normalisation and differential expression screening via DESeq2.",
-        "Mutual information network reconstruction utilising the ARACNe algorithm.",
-        "Topological hub-gene discovery and bottleneck analysis."
+        {
+          category: "Harmonisation",
+          title: "13 GEO Cohort Ingestion",
+          detail: "Cross-dataset aggregation and quantile normalisation across 13 public GEO accessions."
+        },
+        {
+          category: "Differential",
+          title: "DESeq2 Expression",
+          detail: "Robust differential gene expression profiling identifying statistically significant transcripts."
+        },
+        {
+          category: "Networks",
+          title: "ARACNe Reconstruction",
+          detail: "Information-theoretic network inference identifying directed transcriptional interactions."
+        },
+        {
+          category: "Topology",
+          title: "Regulatory Hub Analysis",
+          detail: "Graph centrality and degree metrics isolating candidate hub drivers in neurodegeneration."
+        }
       ],
       pipeline: {
         type: 'network',
