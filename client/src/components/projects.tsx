@@ -1,7 +1,8 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ExternalLink, Github, FileText, Activity, Cpu, Database, Zap } from 'lucide-react';
+import { ExternalLink, Github, FileText, Activity, Zap } from 'lucide-react';
 import { portfolioData, ProjectItem } from '@/data/portfolio';
+import { ProjectPipelineView } from '@/components/project-pipeline';
 
 function ProjectCard({ project, index, total }: { project: ProjectItem; index: number; total: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -136,6 +137,11 @@ function ProjectCard({ project, index, total }: { project: ProjectItem; index: n
                 {project.benchmarkHighlight.environment} Clearly labeled as results from a particular benchmark environment, not universal performance guarantees.
               </p>
             </div>
+          )}
+
+          {/* Architecture & Execution Pipeline Visualizer */}
+          {project.pipeline && (
+            <ProjectPipelineView pipeline={project.pipeline} />
           )}
 
           {/* Contribution Statement */}

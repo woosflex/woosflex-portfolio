@@ -1,3 +1,14 @@
+export interface PipelineStep {
+  name: string;
+  detail: string;
+  type?: 'input' | 'process' | 'compute' | 'storage' | 'output';
+}
+
+export interface ProjectPipeline {
+  type: 'flow' | 'waveform' | 'network';
+  steps: PipelineStep[];
+}
+
 export interface ProjectItem {
   id: string;
   number: string;
@@ -7,6 +18,7 @@ export interface ProjectItem {
   contribution: string;
   technologies: string[];
   technicalHighlights: string[];
+  pipeline: ProjectPipeline;
   links: {
     github?: string;
     benchmark?: string;
@@ -64,6 +76,13 @@ export interface PublicationItem {
   url: string;
 }
 
+export interface AboutPillar {
+  title: string;
+  subtitle: string;
+  badge: string;
+  description: string;
+}
+
 export const portfolioData = {
   hero: {
     name: "Adnan Raza",
@@ -90,13 +109,33 @@ export const portfolioData = {
 
   about: {
     title: "About Me",
+    headline: "Bridging molecular sciences with high-performance systems engineering.",
     paragraphs: [
-      "I'm a software developer with an academic background in bioinformatics and microbiology, currently focused on systems software, scientific computing and high-performance applications.",
-      "During my research software work at IIIT Delhi, I contributed to computational frameworks for biological research and drug discovery. My work involved Python-to-Rust integration, GPU-oriented workflows, Docker-based services, Nextflow pipelines and PostgreSQL.",
-      "Outside collaborative research, I designed and developed TracEon, a C++20 genomic data caching library. Building it has given me practical experience with concurrent programming, memory-efficient data structures, SIMD optimisation, compression, integrity verification and benchmarking.",
-      "I primarily work in Linux environments and enjoy exploring the engineering decisions that make software efficient, reliable and maintainable.",
-      "My long-term interests include systems programming, HPC infrastructure, scientific software engineering and performance-oriented computing."
+      "I am a software engineer with an academic background in bioinformatics and microbiology, focused on systems software, scientific computing, and high-performance applications.",
+      "During my research appointments at IIIT Delhi and JNU, I contributed to computational frameworks for biological research and drug discovery. My work involved Python-to-Rust integration, GPU-oriented workflows with WGPU, Docker-based microservices, Nextflow pipelines, and PostgreSQL database schema design.",
+      "Outside collaborative research, I designed and developed TracEon, a C++20 genomic data caching library. Building it has provided hands-on experience in concurrent programming, memory-efficient data structures, SIMD vectorization, compression, integrity verification, and reproducible benchmarking.",
+      "I primarily work in Linux environments and focus on the architectural and algorithmic decisions that make software reliable, scalable, and maintainable under intensive computational loads."
     ],
+    pillars: [
+      {
+        title: "Foundations in Biology",
+        subtitle: "MSc Bioinformatics · BSc Microbiology",
+        badge: "Academic Roots",
+        description: "MSc Bioinformatics (CGPA 9.51/10) and BSc Microbiology (First Class Honours). Deep foundational comprehension of nucleotide sequencing, macromolecular structures, and biological modeling."
+      },
+      {
+        title: "Research Infrastructure",
+        subtitle: "IIIT Delhi Ahuja Lab & JNU",
+        badge: "Scientific Workflows",
+        description: "Developed computational frameworks, Python-to-Rust kernels using maturin, WGPU-oriented workflows, Nextflow DAG orchestrations, and containerised microservices for biological discovery."
+      },
+      {
+        title: "Systems Engineering",
+        subtitle: "TracEon & Low-Level C++",
+        badge: "Core Engineering",
+        description: "Designed TracEon. Practical experience with zero-copy memory layouts, lock-free atomic snapshots, AVX2/NEON SIMD acceleration, LZ4 compression, and verified high-throughput benchmarking."
+      }
+    ] as AboutPillar[],
     thesis: {
       label: "Read My Thesis",
       url: "/Adnan_Raza_Thesis.pdf"
@@ -153,11 +192,6 @@ export const portfolioData = {
     }
   ] as SkillCategory[],
 
-  marquee: {
-    row1: ["C++20", "Rust", "Scientific Computing", "HPC Workflows", "SIMD (AVX2/NEON)", "Zero-Copy Access", "Nextflow", "Linux"],
-    row2: ["Docker", "PostgreSQL", "CMake", "maturin", "WGPU", "Python", "FastQC & fastp", "DESeq2 & ARACNe"]
-  },
-
   projects: [
     {
       id: "traceon",
@@ -177,6 +211,16 @@ export const portfolioData = {
         "CRC32C integrity verification and workload-specific indexing modes.",
         "Optional POSIX TCP-based remote read service and Docker-based testbed."
       ],
+      pipeline: {
+        type: 'flow',
+        steps: [
+          { name: "Input Sequences", detail: "FASTA / FASTQ format", type: "input" },
+          { name: "SIMD Parser", detail: "AVX2 & NEON kernels", type: "compute" },
+          { name: "Zero-Copy Arena", detail: "std::string_view slices", type: "process" },
+          { name: "Lock-Free Reads", detail: "Atomics & snapshots (14T)", type: "compute" },
+          { name: "Verified Cache", detail: "LZ4 & CRC32C storage", type: "storage" }
+        ]
+      },
       links: {
         github: "https://github.com/woosflex/TracEon",
         benchmark: "https://github.com/woosflex/TracEon/blob/main/benchmarks/v2.3.0_benchmark_report.md",
@@ -197,14 +241,23 @@ export const portfolioData = {
       description:
         "A computational workflow infrastructure project developed at IIIT Delhi to support biological research and drug-discovery workflows.",
       contribution:
-        "Developed a Docker-based microservice component, worked on a local Nextflow pipeline, contributed to PostgreSQL database schema design, and helped integrate computational components into a reproducible research workflow (collaborative project).",
+        "Developed a Docker-based microservice component, engineered a local Nextflow pipeline, contributed to PostgreSQL database schema design, and integrated computational modules into a robust research workflow.",
       technologies: ["Python", "Docker", "Nextflow", "PostgreSQL"],
       technicalHighlights: [
-        "Docker containerised microservice for reproducible research task execution.",
-        "Local Nextflow pipeline orchestrating multi-stage computational tasks.",
+        "Containerised Docker microservice for isolated task execution.",
+        "Local Nextflow DAG pipeline orchestrating multi-stage computational tasks.",
         "Relational schema design in PostgreSQL for structured biological data persistence.",
         "Reproducible end-to-end research workflow integration."
       ],
+      pipeline: {
+        type: 'flow',
+        steps: [
+          { name: "Relational DB", detail: "PostgreSQL biological entities", type: "storage" },
+          { name: "Docker Service", detail: "Isolated task execution", type: "process" },
+          { name: "Nextflow DAG", detail: "Multi-stage orchestration", type: "compute" },
+          { name: "Research Pipeline", detail: "Screening integration", type: "output" }
+        ]
+      },
       links: {
         github: "https://github.com/the-ahuja-lab/evolf-pipeline"
       }
@@ -217,15 +270,24 @@ export const portfolioData = {
       description:
         "A collaborative effort to port and optimise computational components from Python to Rust for scalable microscopy and sequence data processing.",
       contribution:
-        "Contributed to Python-to-Rust integration using maturin, implemented merged fixes involving Hu-moment computation, contributed to deterministic stain normalisation, improved per-tile feature extraction in Nextflow, and worked on correlation validation and model-artifact tracking.",
+        "Engineered Python-to-Rust integration using maturin, resolved numerical stability issues in Hu-moment computation, implemented deterministic stain normalisation, and optimised Nextflow per-tile feature extraction.",
       technologies: ["Python", "Rust", "maturin", "Nextflow"],
       technicalHighlights: [
         "Zero-overhead Python bindings to high-performance Rust kernels via maturin.",
-        "Optimised Hu-moment computation routines with deterministic output validation.",
+        "Optimised Hu-moment computation routines with deterministic numerical output.",
         "Deterministic stain normalisation algorithm implementation.",
         "Scalable per-tile feature extraction pipeline built in Nextflow.",
         "Checksum-verified demonstration workflows and model-artifact tracking."
       ],
+      pipeline: {
+        type: 'flow',
+        steps: [
+          { name: "Python API", detail: "Tile preprocessing layer", type: "input" },
+          { name: "maturin / PyO3", detail: "Zero-overhead FFI bridge", type: "process" },
+          { name: "Rust Kernels", detail: "Hu-moments & normalisation", type: "compute" },
+          { name: "Nextflow Tiling", detail: "Per-tile feature extraction", type: "output" }
+        ]
+      },
       links: {
         github: "https://github.com/the-ahuja-lab/NucXplore"
       }
@@ -245,6 +307,15 @@ export const portfolioData = {
         "High-performance read filtering, poly-G/adapter trimming, and error correction with fastp.",
         "Consolidated QC reporting and reproducible command-line workflow structure."
       ],
+      pipeline: {
+        type: 'flow',
+        steps: [
+          { name: "Raw FASTQ", detail: "High-throughput sequencing reads", type: "input" },
+          { name: "FastQC Gate", detail: "Per-base Phred score inspection", type: "compute" },
+          { name: "fastp Filter", detail: "Adapter trim & error correction", type: "process" },
+          { name: "Clean Reads", detail: "Filtered FASTQ & QC report", type: "output" }
+        ]
+      },
       links: {
         github: "https://github.com/woosflex/rnaseq_analysis"
       }
@@ -264,6 +335,15 @@ export const portfolioData = {
         "Dynamic plotting of regional GC-skew and content variations using ggplot2.",
         "Reactive interactive UI built with R Shiny for exploratory sequence inspection."
       ],
+      pipeline: {
+        type: 'waveform',
+        steps: [
+          { name: "FASTA Sequence", detail: "Genomic window ingestion", type: "input" },
+          { name: "Sliding Window", detail: "Configurable span & step size", type: "compute" },
+          { name: "GC% Calculation", detail: "Regional nucleotide ratio", type: "process" },
+          { name: "R Shiny App", detail: "Interactive reactive plotting", type: "output" }
+        ]
+      },
       links: {
         github: "https://github.com/woosflex/gcvisualyst"
       }
@@ -276,13 +356,22 @@ export const portfolioData = {
       description:
         "A computational analysis workflow involving public GEO datasets, expression normalisation, differential expression analysis, gene regulatory network reconstruction and topological analysis.",
       contribution:
-        "Built the end-to-end analysis pipeline analysing Multiple Sclerosis expression data across 13 GEO datasets using mutual information and network topology.",
+        "Built the end-to-end analysis pipeline analysing Multiple Sclerosis expression data across 13 GEO datasets utilising mutual information and network topology.",
       technologies: ["R", "DESeq2", "ARACNe", "Network Analysis"],
       technicalHighlights: [
         "Cross-dataset normalisation and differential expression screening via DESeq2.",
-        "Mutual information network reconstruction utilizing the ARACNe algorithm.",
+        "Mutual information network reconstruction utilising the ARACNe algorithm.",
         "Topological hub-gene discovery and bottleneck analysis."
       ],
+      pipeline: {
+        type: 'network',
+        steps: [
+          { name: "13 GEO Datasets", detail: "Expression microarrays", type: "input" },
+          { name: "DESeq2 Screening", detail: "Differential expression", type: "compute" },
+          { name: "ARACNe Algorithm", detail: "Mutual information network", type: "process" },
+          { name: "Hub Topology", detail: "Transcription factor identification", type: "output" }
+        ]
+      },
       links: {
         github: "https://github.com/woosflex/grn_analysis",
         live: "https://woosflex.github.io/grn_analysis"

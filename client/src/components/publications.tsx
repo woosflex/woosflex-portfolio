@@ -33,10 +33,13 @@ export function Publications() {
               >
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                   <div className="space-y-3 flex-1">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 flex-wrap">
                       <BookOpen className="h-4 w-4 text-primary flex-shrink-0" />
                       <span className="font-mono text-xs uppercase tracking-wider text-primary font-semibold">
                         {pub.venue} {pub.citationDetails ? `· ${pub.citationDetails}` : ''} ({pub.year})
+                      </span>
+                      <span className="px-2.5 py-0.5 rounded-full border border-primary/30 bg-primary/10 text-primary font-mono text-xs uppercase font-bold tracking-wider">
+                        {pub.venue === 'bioRxiv' ? 'Preprint' : 'Peer-Reviewed Journal'}
                       </span>
                     </div>
 

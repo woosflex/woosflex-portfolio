@@ -52,18 +52,24 @@ export function Experience() {
                   </p>
                 )}
 
-                <div className="space-y-2.5">
-                  <span className="font-mono text-xs text-[#D7E2EA]/50 uppercase tracking-widest block mb-2">
+                <div className="space-y-3">
+                  <span className="font-mono text-xs text-[#D7E2EA]/50 uppercase tracking-widest block mb-1">
                     Areas of Work & Contributions
                   </span>
-                  <ul className="text-[#D7E2EA]/80 space-y-2.5 text-sm sm:text-base font-light">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
                     {exp.areas.map((area, areaIdx) => (
-                      <li key={areaIdx} className="flex items-start" data-testid={`experience-area-${index}-${areaIdx}`}>
-                        <ChevronRight className="text-primary mt-1 mr-3 h-4 w-4 flex-shrink-0" />
-                        <span className="leading-relaxed">{area}</span>
-                      </li>
+                      <div
+                        key={areaIdx}
+                        className="flex items-start gap-2.5 p-3 rounded-xl border border-[#D7E2EA]/10 bg-white/[0.015] hover:border-primary/40 transition-colors"
+                        data-testid={`experience-area-${index}-${areaIdx}`}
+                      >
+                        <ChevronRight className="text-primary mt-0.5 h-3.5 w-3.5 flex-shrink-0" />
+                        <span className="text-xs sm:text-sm text-[#D7E2EA]/85 leading-relaxed font-light">
+                          {area}
+                        </span>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </div>
             </FadeIn>

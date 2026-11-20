@@ -54,9 +54,27 @@ export function Education() {
                 </div>
 
                 {edu.details && (
-                  <p className="text-[#D7E2EA]/75 text-sm sm:text-base font-light leading-relaxed pt-2 border-t border-[#D7E2EA]/10">
-                    {edu.details}
-                  </p>
+                  <div className="pt-3 border-t border-[#D7E2EA]/10 space-y-2">
+                    <span className="font-mono text-xs text-[#D7E2EA]/60 uppercase tracking-wider block">
+                      {edu.details.startsWith('Coursework:') ? 'Key Coursework' : 'Focus Area'}
+                    </span>
+                    {edu.details.startsWith('Coursework:') ? (
+                      <div className="flex flex-wrap gap-1.5">
+                        {edu.details.replace('Coursework:', '').split(',').map((course) => (
+                          <span
+                            key={course.trim()}
+                            className="inline-flex items-center px-2.5 py-1 rounded-lg border border-[#D7E2EA]/15 bg-[#0C0C0C]/60 text-[#D7E2EA]/85 font-mono text-xs hover:border-primary/40 transition-colors"
+                          >
+                            {course.trim()}
+                          </span>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-[#D7E2EA]/75 text-sm sm:text-base font-light leading-relaxed">
+                        {edu.details}
+                      </p>
+                    )}
+                  </div>
                 )}
               </div>
             </FadeIn>

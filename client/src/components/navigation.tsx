@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Terminal as TerminalIcon } from 'lucide-react';
+import { useTerminal } from '@/hooks/use-terminal';
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const terminal = useTerminal();
 
   // Track which section is currently in view for active nav highlighting
   useEffect(() => {
@@ -72,6 +74,17 @@ export function Navigation() {
                 </a>
               );
             })}
+
+            {/* Terminal Quick-Trigger */}
+            <button
+              onClick={() => terminal.open()}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-primary/40 bg-card/60 hover:border-primary text-xs font-mono text-[#D7E2EA] hover:text-primary transition-all duration-200"
+              aria-label="Launch interactive terminal"
+              data-testid="nav-terminal-trigger"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true" />
+              <span>&gt;_ terminal</span>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -109,6 +122,22 @@ export function Navigation() {
                 </a>
               );
             })}
+
+            {/* Mobile Terminal Quick-Trigger */}
+            <button
+              onClick={() => {
+                setIsMenuOpen(false);
+                terminal.open();
+              }}
+              className="w-full mt-2 flex items-center justify-between min-h-12 py-3 px-4 text-xs font-mono uppercase tracking-wider rounded-xl border border-primary/40 bg-primary/10 text-primary font-bold hover:bg-primary/20 transition-colors"
+              data-testid="mobile-nav-terminal-trigger"
+            >
+              <span className="inline-flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true" />
+                <span>&gt;_ Launch Terminal</span>
+              </span>
+              <span className="text-xs text-primary/70">[Esc]</span>
+            </button>
           </div>
         )}
       </div>
