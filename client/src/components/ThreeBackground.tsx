@@ -251,19 +251,24 @@ export function ThreeBackground() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
+    // --- Motion & Visibility Checks ---
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let isReducedMotion = motionQuery.matches;
+    let isTabVisible = !document.hidden;
+
     // --- Animation Loop ---
-    let animationFrameId: number;
+    let animationFrameId: number | null = null;
     const clock = new THREE.Clock();
 
-    const animate = () => {
-      animationFrameId = requestAnimationFrame(animate);
-
-      const time = clock.getElapsedTime();
+    const renderFrame = () => {
+      const time = isReducedMotion ? 0 : clock.getElapsedTime();
       const scrollPercent = scrollPercentRef.current;
 
       // Smooth mouse interpolation
-      mouseRef.current.x += (targetMouseRef.current.x - mouseRef.current.x) * 0.05;
-      mouseRef.current.y += (targetMouseRef.current.y - mouseRef.current.y) * 0.05;
+      if (!isReducedMotion) {
+        mouseRef.current.x += (targetMouseRef.current.x - mouseRef.current.x) * 0.05;
+        mouseRef.current.y += (targetMouseRef.current.y - mouseRef.current.y) * 0.05;
+      }
 
       const positions = geometry.attributes.position.array as Float32Array;
       const colorArray = geometry.attributes.color.array as Float32Array;
@@ -339,13 +344,12 @@ export function ThreeBackground() {
             // Brain Stage: Organic synapses connections
             for (let j = i + 1; j < Math.min(i + 12, particleCount); j++) {
               const j3 = j * 3;
-              const dist = Math.hypot(
-                positions[i3] - positions[j3],
-                positions[i3 + 1] - positions[j3 + 1],
-                positions[i3 + 2] - positions[j3 + 2]
-              );
+              const pdx = positions[i3] - positions[j3];
+              const pdy = positions[i3 + 1] - positions[j3 + 1];
+              const pdz = positions[i3 + 2] - positions[j3 + 2];
+              const distSq = pdx * pdx + pdy * pdy + pdz * pdz;
 
-              if (dist < 3.0) {
+              if (distSq < 9.0) {
                 const lIdx = lineIdx * 6;
                 linesArray[lIdx] = positions[i3];
                 linesArray[lIdx + 1] = positions[i3 + 1];
@@ -373,27 +377,29 @@ export function ThreeBackground() {
               // Straight PCB layout check (approx equal X or Y)
               const diffX = Math.abs(positions[i3] - positions[j3]);
               const diffY = Math.abs(positions[i3 + 1] - positions[j3 + 1]);
-              const distance = Math.hypot(positions[i3] - positions[j3], positions[i3 + 1] - positions[j3 + 1]);
               
-              // If nodes are reasonably close and horizontally or vertically aligned
-              if (distance < 5.0 && (diffX < 0.25 || diffY < 0.25)) {
-                const lIdx = lineIdx * 6;
-                linesArray[lIdx] = positions[i3];
-                linesArray[lIdx + 1] = positions[i3 + 1];
-                linesArray[lIdx + 2] = positions[i3 + 2];
-                linesArray[lIdx + 3] = positions[j3];
-                linesArray[lIdx + 4] = positions[j3 + 1];
-                linesArray[lIdx + 5] = positions[j3 + 2];
+              // Quick rejection before distance calculation
+              if (diffX < 0.25 || diffY < 0.25) {
+                const distSq = diffX * diffX + diffY * diffY;
+                if (distSq < 25.0) {
+                  const lIdx = lineIdx * 6;
+                  linesArray[lIdx] = positions[i3];
+                  linesArray[lIdx + 1] = positions[i3 + 1];
+                  linesArray[lIdx + 2] = positions[i3 + 2];
+                  linesArray[lIdx + 3] = positions[j3];
+                  linesArray[lIdx + 4] = positions[j3 + 1];
+                  linesArray[lIdx + 5] = positions[j3 + 2];
 
-                linesColorArray[lIdx] = activeColor.r;
-                linesColorArray[lIdx + 1] = activeColor.g;
-                linesColorArray[lIdx + 2] = activeColor.b;
-                linesColorArray[lIdx + 3] = activeColor.r;
-                linesColorArray[lIdx + 4] = activeColor.g;
-                linesColorArray[lIdx + 5] = activeColor.b;
+                  linesColorArray[lIdx] = activeColor.r;
+                  linesColorArray[lIdx + 1] = activeColor.g;
+                  linesColorArray[lIdx + 2] = activeColor.b;
+                  linesColorArray[lIdx + 3] = activeColor.r;
+                  linesColorArray[lIdx + 4] = activeColor.g;
+                  linesColorArray[lIdx + 5] = activeColor.b;
 
-                lineIdx++;
-                break;
+                  lineIdx++;
+                  break;
+                }
               }
             }
           }
@@ -419,20 +425,79 @@ export function ThreeBackground() {
       renderer.render(scene, camera);
     };
 
-    animate();
+    const startAnimation = () => {
+      if (animationFrameId !== null) return;
+      const loop = () => {
+        renderFrame();
+        animationFrameId = requestAnimationFrame(loop);
+      };
+      animationFrameId = requestAnimationFrame(loop);
+    };
+
+    const stopAnimation = () => {
+      if (animationFrameId !== null) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      }
+    };
+
+    // Initial render or loop start
+    if (isReducedMotion) {
+      renderFrame();
+    } else {
+      startAnimation();
+    }
+
+    // Motion sensitivity changes
+    const handleMotionChange = (e: MediaQueryListEvent) => {
+      isReducedMotion = e.matches;
+      if (isReducedMotion) {
+        stopAnimation();
+        renderFrame();
+      } else if (isTabVisible) {
+        startAnimation();
+      }
+    };
+
+    // Tab visibility changes
+    const handleVisibilityChange = () => {
+      isTabVisible = !document.hidden;
+      if (!isTabVisible || isReducedMotion) {
+        stopAnimation();
+      } else {
+        startAnimation();
+      }
+    };
+
+    // Scroll updates for reduced motion (renders static frame at new scroll offset)
+    const handleScrollReduced = () => {
+      if (isReducedMotion) {
+        renderFrame();
+      }
+    };
+
+    motionQuery.addEventListener('change', handleMotionChange);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('scroll', handleScrollReduced, { passive: true });
 
     // --- Window Resize ---
     const handleResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
+      if (isReducedMotion) {
+        renderFrame();
+      }
     };
 
     window.addEventListener('resize', handleResize, { passive: true });
 
     // --- Cleanup ---
     return () => {
-      cancelAnimationFrame(animationFrameId);
+      stopAnimation();
+      motionQuery.removeEventListener('change', handleMotionChange);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('scroll', handleScrollReduced);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);

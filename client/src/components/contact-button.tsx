@@ -12,15 +12,7 @@ export function ContactButton({
   return (
     <a
       href={href}
-      className={`inline-flex items-center justify-center rounded-full text-white font-medium uppercase tracking-widest px-8 py-3 sm:px-10 sm:py-3.5 md:px-12 md:py-4 text-xs sm:text-sm md:text-base ${className}`}
-      style={{
-        background:
-          "linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%)",
-        boxShadow:
-          "0px 4px 4px rgba(181, 1, 167, 0.25), 4px 4px 12px #7721B1 inset",
-        outline: "2px solid white",
-        outlineOffset: "-3px",
-      }}
+      className={`inline-flex items-center justify-center rounded-full text-white font-medium uppercase tracking-widest px-8 py-3 sm:px-10 sm:py-3.5 md:px-12 md:py-4 text-xs sm:text-sm md:text-base bg-accent hover:bg-accent/90 shadow-[0_0_20px_hsl(282,85%,65%/0.3)] hover:shadow-[0_0_25px_hsl(282,85%,65%/0.5)] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black ${className}`}
       data-testid="button-contact"
     >
       {label}

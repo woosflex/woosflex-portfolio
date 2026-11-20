@@ -18,6 +18,8 @@ body,
 
 html {
   scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: hsl(217, 33%, 15%) #0C0C0C;
 }
 
 body {
@@ -32,6 +34,40 @@ body {
 :where(a, button, input, textarea, select):focus-visible {
   outline: 2px solid hsl(199, 89%, 52%);
   outline-offset: 4px;
+}
+
+/* Caret theming */
+input, textarea {
+  caret-color: hsl(199, 89%, 52%);
+}
+
+/* Text link underline offset */
+a {
+  text-underline-offset: 3px;
+}
+
+/* Custom scrollbars for WebKit */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0C0C0C;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(217, 33%, 14%);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(199, 89%, 52% / 0.3);
+}
+
+/* Tabular numbers for metrics and benchmarks */
+.tabular-nums, .hero-proof, code, pre {
+  font-variant-numeric: tabular-nums;
 }
 
 :root {
@@ -327,10 +363,7 @@ body {
   }
 
   .hero-heading {
-    background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--foreground);
   }
 
   .terminal-overlay {
@@ -414,7 +447,7 @@ body {
   .project-card {
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     background: var(--gradient-secondary);
-    border: 1px solid hsl(217, 33%, 20%);
+    border: 1px solid hsl(217, 33%, 15%);
     backdrop-filter: blur(20px);
     position: relative;
     overflow: hidden;
@@ -535,7 +568,7 @@ body {
   /* Code block styling */
   .code-block {
     background: var(--gradient-secondary);
-    border: 1px solid hsl(217, 33%, 20%);
+    border: 1px solid hsl(217, 33%, 15%);
     border-radius: var(--radius);
     padding: 1.5rem;
     font-family: var(--font-mono);
@@ -568,14 +601,9 @@ body {
     box-shadow: var(--glow-primary);
   }
 
-  /* Text gradient effects */
+  /* Solid emphasis text */
   .gradient-text {
-    background: var(--gradient-primary);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% 200%;
-    animation: gradientShift 3s ease infinite;
+    color: hsl(var(--primary));
   }
 
   /* Smooth scroll snap */
@@ -588,8 +616,8 @@ body {
   .circuit-card {
     position: relative;
     background: rgba(9, 10, 15, 0.25) !important;
-    border: 1px solid rgba(199, 89, 52, 0.2) !important;
-    border-color: hsl(217, 33%, 20% / 0.4) !important;
+    border: 1px solid hsl(199, 89%, 52% / 0.2) !important;
+    border-color: hsl(217, 33%, 15% / 0.4) !important;
     backdrop-filter: blur(16px) !important;
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);

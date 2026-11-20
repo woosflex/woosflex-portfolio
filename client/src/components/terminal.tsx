@@ -54,6 +54,9 @@ export function Terminal({ isOpen, history, onExecuteCommand, onClose }: Termina
     <AnimatePresence>
       {isOpen && (
         <motion.div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Interactive terminal shell"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

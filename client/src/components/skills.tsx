@@ -1,62 +1,44 @@
 import { FadeIn } from '@/components/fade-in';
+import { portfolioData } from '@/data/portfolio';
 
 export function Skills() {
-  const expertise = [
-    {
-      number: "01",
-      name: "Agentic AI for Biology",
-      description: "Designing autonomous, LLM-driven agent systems that reason over, query, and act on complex biological datasets to accelerate research.",
-    },
-    {
-      number: "02",
-      name: "Systems & Architecture",
-      description: "Low-level programming in Rust and C++, cache design, multi-threading, and high-performance computing infrastructure.",
-    },
-    {
-      number: "03",
-      name: "Computational Biology",
-      description: "Sequence analysis, phylogenetics, and RNA-seq pipelines built with BLAST, MUSCLE, Kallisto, FastQC, FASTP, MultiQC, and GATK.",
-    },
-    {
-      number: "04",
-      name: "Data Science & Analysis",
-      description: "Machine learning, statistical inference, algorithms and data structures, and network analysis using iGraph.",
-    },
-    {
-      number: "05",
-      name: "Neuromorphic & Emerging Tech",
-      description: "Brain-inspired computing, neural networks, and biological hardware interfaces bridging digital and organic systems.",
-    },
-  ];
+  const { skills } = portfolioData;
 
   return (
-    <section id="skills" className="bg-white rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32">
+    <section id="skills" className="bg-[#0C0C0C] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] border-t border-[#D7E2EA]/15 px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32 scroll-mt-16">
       <h2
-        className="text-[#0C0C0C] font-black uppercase text-center mb-16 sm:mb-20 md:mb-28"
+        className="hero-heading font-black uppercase text-center mb-16 sm:mb-20 md:mb-28 text-[#D7E2EA]"
         style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
         data-testid="skills-title"
       >
-        Expertise
+        Technical Skills
       </h2>
 
-      <div className="max-w-5xl mx-auto">
-        {expertise.map((item, i) => (
-          <FadeIn key={item.number} delay={i * 0.1}>
+      <div className="max-w-5xl mx-auto space-y-10 sm:space-y-12">
+        {skills.map((category, i) => (
+          <FadeIn key={category.title} delay={i * 0.1}>
             <div
-              className="flex items-start gap-6 sm:gap-10 py-8 sm:py-10 md:py-12"
-              style={{ borderBottom: i < expertise.length - 1 ? '1px solid rgba(12, 12, 12, 0.15)' : undefined }}
+              className="rounded-3xl border border-[#D7E2EA]/20 bg-card/40 p-6 sm:p-8 md:p-10 hover:border-primary/50 transition-colors"
               data-testid={`skill-category-${i}`}
             >
-              <span className="text-[#0C0C0C] font-black leading-none flex-shrink-0" style={{ fontSize: 'clamp(3rem, 10vw, 140px)' }}>
-                {item.number}
-              </span>
-              <div className="flex flex-col gap-2 pt-2 sm:pt-4">
-                <h3 className="text-[#0C0C0C] font-medium uppercase" style={{ fontSize: 'clamp(1rem, 2.2vw, 2.1rem)' }}>
-                  {item.name}
+              <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-4 mb-6 pb-4 border-b border-[#D7E2EA]/10">
+                <h3 className="text-[#D7E2EA] font-semibold uppercase text-lg sm:text-xl md:text-2xl">
+                  {category.title}
                 </h3>
-                <p className="text-[#0C0C0C] font-light leading-relaxed max-w-2xl" style={{ fontSize: 'clamp(0.85rem, 1.6vw, 1.25rem)', opacity: 0.6 }}>
-                  {item.description}
-                </p>
+                <span className="font-mono text-xs text-primary uppercase tracking-widest">
+                  Category {String(i + 1).padStart(2, '0')}
+                </span>
+              </div>
+
+              <div className="flex flex-wrap gap-2.5 sm:gap-3" aria-label={`${category.title} items`}>
+                {category.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="inline-flex items-center px-4 py-2 rounded-xl border border-[#D7E2EA]/20 bg-[#0C0C0C]/60 text-[#D7E2EA]/90 font-mono text-xs sm:text-sm hover:border-primary/60 hover:text-primary transition-colors"
+                  >
+                    {skill}
+                  </span>
+                ))}
               </div>
             </div>
           </FadeIn>

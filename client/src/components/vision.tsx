@@ -1,37 +1,44 @@
 import { FadeIn } from '@/components/fade-in';
-import { AnimatedText } from '@/components/animated-text';
 import { ContactButton } from '@/components/contact-button';
+import { portfolioData } from '@/data/portfolio';
 
 export function Vision() {
+  const { about } = portfolioData;
+
   return (
-    <section id="vision" className="min-h-screen flex flex-col items-center justify-center px-5 sm:px-8 md:px-10 py-20 relative" style={{ overflowX: 'clip' }}>
+    <section id="about" className="min-h-screen flex flex-col items-center justify-center px-5 sm:px-8 md:px-10 py-20 relative scroll-mt-16" style={{ overflowX: 'clip' }}>
+      {/* Anchor alias for existing backward links */}
+      <span id="vision" className="sr-only" aria-hidden="true" />
+
       <FadeIn delay={0} y={40}>
         <h2
           className="hero-heading font-black uppercase leading-none tracking-tight text-center"
           style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
-          data-testid="vision-title"
+          data-testid="about-title"
         >
-          About me
+          {about.title}
         </h2>
       </FadeIn>
 
-      <div className="flex flex-col items-center gap-10 sm:gap-14 md:gap-16 mt-10 sm:mt-14 md:mt-16">
-        <AnimatedText
-          text="I'm a computational biologist bridging molecular biology with high-performance systems. My work started with TracEon, a C++ in-memory cache for accelerating genomic data access, and has since grown into solving biology-based problems with agentic AI as a research intern at Ahuja Lab, IIIT-Delhi. I focus on low-level programming, systems architecture, and building autonomous, LLM-driven pipelines that reason over biological data."
-          className="text-[#D7E2EA] font-medium text-center leading-relaxed max-w-[560px]"
-          style={{ fontSize: 'clamp(1rem, 2vw, 1.35rem)' }}
-        />
+      <div className="flex flex-col items-center gap-8 sm:gap-10 md:gap-12 mt-10 sm:mt-14 md:mt-16 max-w-3xl mx-auto">
+        <div className="space-y-5 text-[#D7E2EA]/85 text-base sm:text-lg md:text-xl font-light leading-relaxed text-center sm:text-left">
+          {about.paragraphs.map((paragraph, index) => (
+            <p key={index} data-testid={`about-paragraph-${index}`}>
+              {paragraph}
+            </p>
+          ))}
+        </div>
 
-        <div className="flex flex-col sm:flex-row gap-6 items-center">
+        <div className="flex flex-col sm:flex-row gap-6 items-center pt-4">
           <ContactButton />
           <a
-            href="/Adnan_Raza_Thesis.pdf"
+            href={about.thesis.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#D7E2EA] uppercase tracking-widest text-sm border-b border-[#D7E2EA]/40 hover:opacity-70 transition-opacity duration-200 pb-1"
+            className="text-[#D7E2EA] uppercase tracking-widest text-sm border-b border-[#D7E2EA]/40 hover:border-primary hover:text-primary transition-colors pb-1 font-mono"
             data-testid="link-thesis"
           >
-            Read My Thesis
+            {about.thesis.label}
           </a>
         </div>
       </div>

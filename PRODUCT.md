@@ -8,49 +8,60 @@ web
 
 ## Users
 
-The portfolio serves a broad audience, including open-source peers and maintainers, researchers, potential collaborators, employers, graduate-program reviewers, and anyone evaluating Adnan Raza's work and professional presence.
+The portfolio serves a broad technical audience, including systems engineering and scientific computing peers, open-source maintainers, researchers, prospective employers, graduate reviewers, and collaborators evaluating Adnan Raza's software engineering and research capabilities.
 
 ## Product Purpose
 
-The portfolio establishes a durable digital presence for Adnan Raza and makes his computational biology, agentic AI, and systems-engineering work easy to discover and evaluate. Its primary measure of success is increased credibility for his open-source work, supported by clear paths to inspect projects, research, experience, and public profiles.
+The portfolio establishes a durable, authoritative digital presence for Adnan Raza as a Systems Software Engineer working across scientific computing, HPC, and bioinformatics. Its primary measure of success is increased credibility for his engineering and research work, grounded in inspectable code, reproducible benchmarks, and peer-reviewed scientific contributions.
 
 ## Positioning
 
-The portfolio presents a practitioner who bridges molecular biology with low-level, high-performance systems and autonomous LLM-driven research pipelines. Its credibility comes from inspectable work and research evidence rather than a generic personal-brand claim.
+The portfolio presents a systems-oriented software engineer with an academic background in bioinformatics and microbiology who bridges low-level high-performance engineering (C++20, SIMD, lock-free concurrency, memory architectures) with scientific workflows (Rust integration, Nextflow pipelines, Docker, Python). Its credibility comes from inspectable implementations and documented benchmarks rather than generic personal-brand slogans.
 
 ## Operating Context
 
-Visitors may arrive from GitHub, LinkedIn, Google Scholar, search results, applications, or direct referrals. They should be able to scan Adnan's background, inspect featured and open-source projects, review education and experience, open research documents, and make contact.
+Visitors arrive from GitHub, LinkedIn, Google Scholar, search results, direct referrals, or technical applications. They need to rapidly assess Adnan's core engineering competencies, inspect featured projects (primarily TracEon v2.3.0), review professional research experience at IIIT Delhi and JNU, verify publications, and connect directly.
 
 ## Capabilities and Constraints
 
-- Single-page responsive web portfolio built with React, TypeScript, Vite, and an Express production server.
-- Presents projects, open-source contributions, research vision, skills, experience, education, contact routes, and an interactive terminal.
-- Links to GitHub, LinkedIn, Google Scholar, project repositories, demonstrations, publications, and research documents.
-- Current repository facts, dates, links, contact details, and project claims are fixed and authoritative unless the user explicitly updates them.
-- Do not state or imply that Adnan is seeking a fully funded PhD position.
-- Preserve backward compatibility and working external links during future design work.
+- Single-page responsive web portfolio built with React, TypeScript, Vite, Tailwind CSS, and an Express server.
+- Interactive terminal interface providing synced command-line access to all portfolio data.
+- Centralized, typed portfolio data architecture (`client/src/data/portfolio.ts`).
+- Links to GitHub repositories, releases, verified benchmark reports, DOIs, and research documents.
+- **Strict Accuracy Constraints**:
+  - Linux is the primary development environment, but do not claim Linux system administration or server administration.
+  - Do not claim OpenStack, Ceph, Kubernetes, Ansible, Terraform, cloud administration, or enterprise infrastructure experience.
+  - Do not describe virtualisation or networking as advanced expertise (basic VM usage and practical troubleshooting only).
+  - Exposure to PBS-based research computing environments, not production HPC cluster administration.
+  - Do not claim wet-lab sequencing experience.
+  - TracEon is an independently designed and developed C++20 project; its optional TCP service is POSIX-based with no encryption or authentication (do not describe as internet-safe distributed software).
+  - TracEon benchmark metrics must always be contextualized with host hardware (Intel Core Ultra 5 125H, GCC 16.2.1, C++20 Release build).
+  - NucXplore and EvOlf are collaborative projects; personal contributions must be clearly distinguished from the overall platform.
+  - Kallisto and Minimap2 represent coursework exposure, not independently authored tools.
+  - Preserve exact publication titles, author lists, and DOI links; do not claim first or corresponding authorship where not established.
+  - Do not state or imply seeking a fully funded PhD position.
 
 ## Brand Commitments
 
-- Product name and personal identity: Adnan Raza.
-- Voice is technically precise, direct, research-oriented, and grounded in real work.
-- Computational biology, agentic AI, low-level programming, and high-performance systems are durable parts of the professional narrative.
-- Existing factual copy and named projects must not be replaced with invented claims.
+- Name and professional identity: Adnan Raza.
+- Title: Systems Software Engineer (Scientific Computing · HPC · Bioinformatics).
+- Voice: Technically precise, restrained, evidence-led, and devoid of generic hype ("passionate coder", "tech enthusiast", "turning ideas into reality").
+- Palette: Bioelectric cyan, neural violet, deep space black, and ion mist.
 
 ## Evidence on Hand
 
-- Public project and contribution links embedded in `client/src/components/projects.tsx` and `client/src/components/open-source.tsx`.
-- Professional and research history in `client/src/components/experience.tsx`, `client/src/components/education.tsx`, and `client/src/components/vision.tsx`.
-- Undergraduate thesis at `client/public/Adnan_Raza_Thesis.pdf`.
+- TracEon v2.3.0 repository, benchmark report (`benchmarks/v2.3.0_benchmark_report.md`), and release notes (`RELEASE_v2.3.0.md`).
+- NucXplore repository at `https://github.com/the-ahuja-lab/NucXplore` (with 20 commits by woosflex).
+- EvOlf repository at `https://github.com/the-ahuja-lab/evolf-pipeline`.
+- mm2-fast, rnaseq_analysis, GCVisualyst, and grn_analysis repositories on GitHub.
+- 4 peer-reviewed publications and preprints with confirmed DOIs (bioRxiv, Nature Communications, Cell Reports, ENMM).
+- Undergraduate thesis PDF at `client/public/Adnan_Raza_Thesis.pdf`.
 - TracEon proposal at `client/public/assets/TracEon_proposal.pdf`.
-- Public GitHub, LinkedIn, Google Scholar, publication, and contact links embedded in the application.
-- No testimonials, client logos, commercial metrics, or third-party endorsements are supplied; future work must not fabricate them.
 
 ## Product Principles
 
-1. Lead with inspectable work and evidence.
-2. Make technical depth understandable across a broad audience.
-3. Keep open-source contributions easy to discover and verify.
-4. Preserve factual accuracy across projects, research, and professional history.
-5. Give visitors clear routes to explore further or connect.
+1. Lead with inspectable systems code and benchmark evidence.
+2. Present exact contribution boundaries on collaborative projects.
+3. Organize technical competencies by function rather than superficial logo walls.
+4. Maintain factual consistency across portfolio UI, interactive terminal, and GitHub profile.
+5. Provide clear, direct routes for peer inspection, reading papers, and professional contact.

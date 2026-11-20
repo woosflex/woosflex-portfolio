@@ -260,3 +260,7 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/linux,windows,macos,visualstudiocode,replit,vercel,react,node
 # Replit agent runtime state (keep out of public repo)
 .local/
+
+# Impeccable local state
+.impeccable/config.local.json
+.impeccable/live/

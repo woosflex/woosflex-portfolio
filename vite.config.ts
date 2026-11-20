@@ -28,6 +28,15 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          three: ["three"],
+          framer: ["framer-motion"],
+          vendor: ["react", "react-dom", "wouter", "@tanstack/react-query"],
+        },
+      },
+    },
   },
   server: {
     fs: {

@@ -7,6 +7,7 @@ p0_count: 0
 p1_count: 3
 timestamp: 2026-08-13T02-12-26Z
 slug: client-src-pages-home-tsx
+closed: true
 ---
 # Portfolio Design Critique
 

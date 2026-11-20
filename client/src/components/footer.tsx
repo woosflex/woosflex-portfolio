@@ -1,74 +1,78 @@
-/**
- * Footer Component
- * Contact section with social links and Konami code hint
- */
-
-import { Github, Linkedin, GraduationCap } from 'lucide-react';
+import { Github, Linkedin, GraduationCap, Mail } from 'lucide-react';
 import { FadeIn } from '@/components/fade-in';
-import { ContactButton } from '@/components/contact-button';
+import { portfolioData } from '@/data/portfolio';
 
 export function Footer() {
+  const { contact } = portfolioData;
+
   const socialLinks = [
     {
-      href: "https://github.com/woosflex",
+      href: `mailto:${contact.email}`,
+      icon: Mail,
+      label: "Email"
+    },
+    {
+      href: contact.github,
       icon: Github,
       label: "GitHub"
     },
     {
-      href: "https://linkedin.com/in/woosflex",
+      href: contact.linkedin,
       icon: Linkedin,
       label: "LinkedIn"
     },
     {
-      href: "https://scholar.google.com/citations?user=fuD1FzcAAAAJ&hl=en",
+      href: contact.scholar,
       icon: GraduationCap,
       label: "Google Scholar"
     }
   ];
 
   return (
-    <footer className="py-24 px-5 sm:px-8 md:px-10 border-t border-[#D7E2EA]/10">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center space-y-12">
+    <footer id="footer" className="py-24 px-5 sm:px-8 md:px-10 border-t border-[#D7E2EA]/15 scroll-mt-16">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center space-y-10">
           <FadeIn delay={0} y={40}>
             <h2
-              className="hero-heading font-black uppercase leading-none tracking-tight"
+              className="hero-heading font-black uppercase leading-none tracking-tight text-[#D7E2EA]"
               style={{ fontSize: 'clamp(3rem, 8vw, 10rem)' }}
               data-testid="footer-title"
             >
-              Let&apos;s Connect
+              {contact.title}
             </h2>
           </FadeIn>
 
-          <FadeIn delay={0.15} y={20}>
-            <ContactButton />
+          <FadeIn delay={0.1} y={20}>
+            <p className="text-[#D7E2EA]/85 text-base sm:text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
+              {contact.intro}
+            </p>
           </FadeIn>
 
-          <FadeIn delay={0.25} y={20}>
-            <div className="flex justify-center space-x-6">
+          <FadeIn delay={0.2} y={20}>
+            <div className="flex flex-wrap justify-center gap-4">
               {socialLinks.map((link) => {
                 const Icon = link.icon;
                 return (
                   <a
                     key={link.label}
                     href={link.href}
-                    className="text-[#D7E2EA]/60 hover:text-[#D7E2EA] transition-colors duration-200 p-3 rounded-full border-2 border-[#D7E2EA]/20 hover:border-[#D7E2EA]/50"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full border-2 border-[#D7E2EA]/20 bg-[#0C0C0C]/80 hover:border-primary hover:text-primary text-[#D7E2EA] font-mono text-xs sm:text-sm uppercase tracking-wider transition-all duration-200"
+                    target={link.label === "Email" ? undefined : "_blank"}
+                    rel={link.label === "Email" ? undefined : "noopener noreferrer"}
                     data-testid={`link-${link.label.toLowerCase().replace(' ', '-')}`}
                   >
-                    <Icon className="h-6 w-6" />
-                    <span className="sr-only">{link.label}</span>
+                    <Icon className="h-4 w-4" />
+                    <span>{link.label}</span>
                   </a>
                 );
               })}
             </div>
           </FadeIn>
 
-          <div className="text-[#D7E2EA]/70 font-mono text-sm space-y-2" data-testid="copyright">
-            <div>© 2026 Adnan Raza • Built with passion for computational biology</div>
-            <div className="text-xs text-[#D7E2EA]/70">
-              Try the Konami code: ↑↑↓↓←→←→BA
+          <div className="text-[#D7E2EA]/60 font-mono text-xs sm:text-sm space-y-2 pt-8 border-t border-[#D7E2EA]/10" data-testid="copyright">
+            <div>© {new Date().getFullYear()} Adnan Raza • Systems Software Engineer</div>
+            <div className="text-xs text-[#D7E2EA]/40">
+              Type &apos;help&apos; in terminal (Konami code: ↑↑↓↓←→←→BA or press Esc)
             </div>
           </div>
         </div>

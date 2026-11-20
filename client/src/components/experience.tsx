@@ -1,111 +1,74 @@
-/**
- * Experience Section Component
- * Displays professional experience with enhanced visual design
- * Includes role details, organizations, dates, and responsibilities
- */
-
-import { ChevronRight, ExternalLink } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { FadeIn } from '@/components/fade-in';
+import { portfolioData } from '@/data/portfolio';
 
 export function Experience() {
-  const experiences = [
-    {
-      role: "Research Intern",
-      organization: "Ahuja Lab, IIIT-Delhi",
-      dates: "September 2025 - Present",
-      duties: [
-        "Solving biology-based problems using Agentic AI, applying autonomous LLM-driven pipelines to computational biology research questions.",
-        "Building low-level, high-performance systems to accelerate genomic data processing at scale."
-      ]
-    },
-    {
-      role: "Summer Bioinformatics Intern",
-      organization: "Jawaharlal Nehru University, India",
-      dates: "May 2025 - July 2025",
-      duties: [
-        "Creating data mining pipelines with NLP to extract genes associated with MS from PubMed Abstracts."
-      ]
-    }
-  ];
-
-  const publications = [
-    {
-      title: "Cell Reports Publication",
-      link: "https://www.cell.com/cell-reports/fulltext/S2211-1247(26)00081-1",
-    }
-  ];
+  const { experience } = portfolioData;
 
   return (
-    <section id="experience" className="py-24 px-5 sm:px-8 md:px-10 scroll-section">
+    <section id="experience" className="py-24 px-5 sm:px-8 md:px-10 scroll-mt-16">
       <div className="max-w-5xl mx-auto">
         <FadeIn delay={0} y={40}>
           <h2
-            className="hero-heading font-black uppercase leading-none tracking-tight text-center mb-16 sm:mb-20"
-            style={{ fontSize: 'clamp(2.5rem, 8vw, 100px)' }}
+            className="hero-heading font-black uppercase leading-none tracking-tight text-center mb-16 sm:mb-20 text-[#D7E2EA]"
+            style={{ fontSize: 'clamp(3rem, 12vw, 10rem)' }}
             data-testid="experience-title"
           >
-            Experience
+            Professional Experience
           </h2>
         </FadeIn>
 
-        <div className="space-y-6">
-          {experiences.map((exp, index) => (
-            <FadeIn key={index} delay={index * 0.1}>
+        <div className="space-y-8">
+          {experience.map((exp, index) => (
+            <FadeIn key={exp.organization} delay={index * 0.1}>
               <div
-                className="rounded-[24px] border-2 border-[#D7E2EA]/20 p-6 sm:p-8 hover:border-[#D7E2EA]/50 transition-colors"
+                className="rounded-[28px] border-2 border-[#D7E2EA]/20 bg-[#0C0C0C]/80 p-6 sm:p-8 md:p-10 hover:border-primary/50 transition-colors"
                 data-testid={`experience-${index}`}
               >
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-6 gap-4">
-                  <div className="space-y-2">
-                    <h3 className="text-[#D7E2EA] font-medium uppercase text-xl md:text-2xl" data-testid={`experience-role-${index}`}>
-                      {exp.role}
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-6 gap-4 pb-4 border-b border-[#D7E2EA]/10">
+                  <div>
+                    <h3
+                      className="text-[#D7E2EA] font-semibold uppercase text-xl md:text-2xl"
+                      data-testid={`experience-org-${index}`}
+                    >
+                      {exp.organization} {exp.lab && <span className="text-primary font-mono text-lg font-normal">({exp.lab})</span>}
                     </h3>
-                    <p className="text-primary font-medium text-lg" data-testid={`experience-org-${index}`}>
-                      {exp.organization}
-                    </p>
-                  </div>
-                  <div
-                    className="text-[#D7E2EA] px-4 py-2 rounded-full font-mono text-sm border border-[#D7E2EA]/30 uppercase tracking-wider whitespace-nowrap"
-                    data-testid={`experience-dates-${index}`}
-                  >
-                    {exp.dates}
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {exp.roles.map((r, rIdx) => (
+                        <span
+                          key={rIdx}
+                          className="font-mono text-xs text-[#D7E2EA]/80 px-3 py-1 rounded-full border border-[#D7E2EA]/20 bg-[#0C0C0C]"
+                        >
+                          <strong className="text-primary">{r.title}:</strong> {r.period}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-                <ul className="text-[#D7E2EA]/70 space-y-4 text-base md:text-lg">
-                  {exp.duties.map((duty, dutyIndex) => (
-                    <li key={dutyIndex} className="flex items-start" data-testid={`experience-duty-${index}-${dutyIndex}`}>
-                      <ChevronRight className="text-primary mt-1 mr-4 flex-shrink-0" />
-                      <span className="leading-relaxed">{duty}</span>
-                    </li>
-                  ))}
-                </ul>
+
+                {exp.summary && (
+                  <p className="text-sm sm:text-base text-[#D7E2EA]/90 mb-5 font-light">
+                    {exp.summary}
+                  </p>
+                )}
+
+                <div className="space-y-2.5">
+                  <span className="font-mono text-xs text-[#D7E2EA]/50 uppercase tracking-widest block mb-2">
+                    Areas of Work & Contributions
+                  </span>
+                  <ul className="text-[#D7E2EA]/80 space-y-2.5 text-sm sm:text-base font-light">
+                    {exp.areas.map((area, areaIdx) => (
+                      <li key={areaIdx} className="flex items-start" data-testid={`experience-area-${index}-${areaIdx}`}>
+                        <ChevronRight className="text-primary mt-1 mr-3 h-4 w-4 flex-shrink-0" />
+                        <span className="leading-relaxed">{area}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </FadeIn>
           ))}
         </div>
-
-        <FadeIn delay={0.2}>
-          <div className="mt-16">
-            <h3 className="text-[#D7E2EA] uppercase tracking-widest text-sm font-medium mb-6 text-center" data-testid="publications-title">
-              Publications
-            </h3>
-            <div className="space-y-4">
-              {publications.map((pub, index) => (
-                <a
-                  key={index}
-                  href={pub.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full border-2 border-[#D7E2EA]/20 hover:border-[#D7E2EA]/50 px-6 py-4 flex items-center justify-between group transition-colors"
-                  data-testid={`publication-${index}`}
-                >
-                  <span className="text-[#D7E2EA] text-base md:text-lg font-medium">{pub.title}</span>
-                  <ExternalLink className="text-primary h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </a>
-              ))}
-            </div>
-          </div>
-        </FadeIn>
       </div>
     </section>
   );

@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-
-const row1 = ["Rust", "C++", "Agentic AI", "LLM Orchestration", "Systems Design", "HPC", "Linux", "Bash", "RAG"];
-const row2 = ["Sequence Analysis", "BLAST", "Kallisto", "Nextflow", "Docker", "Machine Learning", "iGraph", "GATK", "Neuromorphic Computing"];
+import { portfolioData } from '@/data/portfolio';
 
 function tripled(items: string[]) {
   return [...items, ...items, ...items];
 }
 
 export function Marquee() {
+  const { marquee } = portfolioData;
   const sectionRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
 
@@ -26,16 +25,16 @@ export function Marquee() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-background pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden" style={{ overflowX: 'clip' }}>
+    <section ref={sectionRef} aria-hidden="true" className="bg-background pt-20 sm:pt-28 md:pt-36 pb-10 overflow-hidden" style={{ overflowX: 'clip' }}>
       <div className="flex flex-col gap-3">
         <div
           className="flex gap-3 whitespace-nowrap"
           style={{ transform: `translateX(${offset - 200}px)`, willChange: 'transform' }}
         >
-          {tripled(row1).map((skill, i) => (
+          {tripled(marquee.row1).map((skill, i) => (
             <span
               key={i}
-              className="flex-shrink-0 flex items-center px-8 h-[70px] rounded-2xl border border-[#D7E2EA]/20 text-[#D7E2EA] uppercase tracking-widest text-sm font-medium"
+              className="flex-shrink-0 flex items-center px-6 h-[60px] sm:h-[70px] rounded-2xl border border-[#D7E2EA]/20 text-[#D7E2EA] uppercase tracking-widest text-xs sm:text-sm font-medium font-mono"
               data-testid={`marquee-row1-${i}`}
             >
               {skill}
@@ -46,10 +45,10 @@ export function Marquee() {
           className="flex gap-3 whitespace-nowrap"
           style={{ transform: `translateX(${-(offset - 200)}px)`, willChange: 'transform' }}
         >
-          {tripled(row2).map((skill, i) => (
+          {tripled(marquee.row2).map((skill, i) => (
             <span
               key={i}
-              className="flex-shrink-0 flex items-center px-8 h-[70px] rounded-2xl border border-[#D7E2EA]/20 text-[#D7E2EA] uppercase tracking-widest text-sm font-medium"
+              className="flex-shrink-0 flex items-center px-6 h-[60px] sm:h-[70px] rounded-2xl border border-[#D7E2EA]/20 text-[#D7E2EA] uppercase tracking-widest text-xs sm:text-sm font-medium font-mono"
               data-testid={`marquee-row2-${i}`}
             >
               {skill}
