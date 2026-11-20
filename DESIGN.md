@@ -90,7 +90,7 @@ components:
 
 <!-- impeccable:design-map -->
 Name: Adnan Raza Portfolio
-Colors: primary: bioelectric-cyan hsl(199, 89%, 52%); secondary: neural-violet hsl(282, 85%, 65%); neutral: deep-space-black #0C0C0C; neutral: ion-mist #D7E2EA
+Colors: primary: bioelectric-cyan hsl(199, 89%, 52%); secondary: neural-violet hsl(282, 85%, 65%); neutral: deep-space-black #0C0C0C; accent: terminal-green hsl(110, 100%, 70%) (+4 more in the sidecar)
 Fonts: Kanit (display, headline, body, label); JetBrains Mono (mono)
 Spacing: xs 0.5rem, sm 1rem, md 1.5rem, lg 2rem, xl 2.5rem, section 6rem
 Radius: sm 0.5rem, md 0.625rem, lg 0.75rem, card 1.5rem, section-sm 2.5rem, section-md 3.125rem, section-lg 3.75rem, full 9999px
