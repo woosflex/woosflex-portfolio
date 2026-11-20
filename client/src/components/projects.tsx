@@ -165,7 +165,7 @@ function ProjectCard({ project, index, total }: { project: ProjectItem; index: n
     <div
       id={`project-${project.number}`}
       ref={ref}
-      className="scroll-mt-24 min-h-[600px] mb-8 lg:mb-12"
+      className="scroll-mt-24 min-h-[600px] mb-8 lg:mb-12 relative"
     >
       <motion.div
         style={{ scale }}
@@ -382,7 +382,7 @@ export function Projects() {
         ))}
       </nav>
 
-      <div className="max-w-5xl mx-auto flex flex-col gap-6">
+      <div className="max-w-5xl mx-auto flex flex-col gap-6 relative">
         {projects.map((project, i) => (
           <ProjectCard key={project.id} project={project} index={i} total={projects.length} />
         ))}

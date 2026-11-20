@@ -32,7 +32,7 @@ export function AnimatedText({ text, className, style }: AnimatedTextProps) {
   const characters = text.split("");
 
   return (
-    <p ref={ref} className={className} style={style}>
+    <p ref={ref} className={className ? `relative ${className}` : 'relative'} style={style}>
       <span className="sr-only">{text}</span>
       {characters.map((char, i) => (
         <Character key={i} char={char === " " ? " " : char} index={i} total={characters.length} progress={scrollYProgress} />

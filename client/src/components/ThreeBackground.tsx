@@ -1,6 +1,18 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
+function checkWebGLSupport(): boolean {
+  try {
+    const canvas = document.createElement('canvas');
+    return Boolean(
+      window.WebGLRenderingContext &&
+      (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
+    );
+  } catch {
+    return false;
+  }
+}
+
 export function ThreeBackground() {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollPercentRef = useRef<number>(0);
@@ -9,6 +21,10 @@ export function ThreeBackground() {
 
   useEffect(() => {
     if (!containerRef.current) return;
+    if (!checkWebGLSupport()) {
+      // Gracefully fall back to CSS dark background when WebGL is unavailable
+      return;
+    }
 
     // --- Scene Setup ---
     const scene = new THREE.Scene();
@@ -22,7 +38,13 @@ export function ThreeBackground() {
     );
     camera.position.z = 32;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    } catch {
+      // Gracefully fall back to CSS dark background if WebGL is disabled or unavailable
+      return;
+    }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x090a0f, 1);
@@ -501,14 +523,14 @@ export function ThreeBackground() {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
-      if (containerRef.current && renderer.domElement) {
+      if (containerRef.current && renderer?.domElement && containerRef.current.contains(renderer.domElement)) {
         containerRef.current.removeChild(renderer.domElement);
       }
       geometry.dispose();
       material.dispose();
       lineGeometry.dispose();
       lineMaterial.dispose();
-      renderer.dispose();
+      renderer?.dispose();
     };
   }, []);
 
