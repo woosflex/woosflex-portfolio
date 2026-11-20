@@ -95,16 +95,6 @@ Fonts: Kanit (display, headline, body, label); JetBrains Mono (mono)
 Spacing: xs 0.5rem, sm 1rem, md 1.5rem, lg 2rem, xl 2.5rem, section 6rem
 Radius: sm 0.5rem, md 0.625rem, lg 0.75rem, card 1.5rem, section-sm 2.5rem, section-md 3.125rem, section-lg 3.75rem, full 9999px
 North Star: “The Cinematic Systems Observatory”
-Rules:
-- The Signal, Not Wallpaper Rule. Cyan and violet identify energy, state, and connection.
-- The Alternating Chapter Rule. White is a deliberate narrative interruption, not a general-purpose card color within dark sections.
-- The Monument and Readout Rule. Kanit creates the monument; JetBrains Mono supplies the readout.
-- The Eye-Path Rule. Elevation must identify the current focal point or next action.
-Elevation:
-- Bioelectric Glow: 0 0 20px hsl(199, 89%, 52% / 0.3)
-- Neural Glow: 0 0 20px hsl(282, 85%, 65% / 0.3)
-- Card Lift: 0 20px 40px hsl(0 0% 0% / 0.3)
-- Circuit Depth: 0 15px 35px rgba(0, 0, 0, 0.4)
 Don't:
 - Don't flatten the interface into a generic grid of same-sized cards.
 - Don't distribute glow, shadow, blur, or 3D effects evenly; atmosphere needs focal hierarchy.

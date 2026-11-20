@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-13T00:00:00+05:30",
+  "generatedAt": "2026-11-20T13:38:40+05:30",
   "title": "Design System: Adnan Raza Portfolio",
   "extensions": {
     "colorMeta": {
@@ -8,47 +8,71 @@
         "role": "neutral",
         "displayName": "Deep Space Black",
         "canonical": "#0C0C0C",
-        "tonalRamp": ["#000000", "#0C0C0C", "hsl(222, 14%, 8%)", "hsl(217, 33%, 12%)"]
+        "tonalRamp": ["#000000", "#080808", "#0C0C0C", "hsl(220, 15%, 6%)", "hsl(222, 14%, 8%)", "hsl(217, 33%, 12%)", "hsl(217, 33%, 15%)", "hsl(217, 33%, 20%)"]
       },
       "ion-mist": {
         "role": "neutral",
         "displayName": "Ion Mist",
         "canonical": "#D7E2EA",
-        "tonalRamp": ["hsl(215, 20.2%, 70%)", "#D7E2EA", "hsl(210, 40%, 96%)", "hsl(210, 40%, 98%)"]
+        "tonalRamp": ["hsl(215, 20.2%, 40%)", "hsl(215, 20.2%, 55%)", "hsl(215, 20.2%, 70%)", "#D7E2EA", "hsl(210, 40%, 94%)", "hsl(210, 40%, 96%)", "hsl(210, 40%, 98%)", "#FFFFFF"]
       },
       "bioelectric-cyan": {
         "role": "primary",
         "displayName": "Bioelectric Cyan",
         "canonical": "hsl(199, 89%, 52%)",
-        "tonalRamp": ["hsl(199, 89%, 52% / 0.05)", "hsl(199, 89%, 52% / 0.3)", "hsl(199, 89%, 52%)"]
+        "tonalRamp": ["hsl(199, 89%, 15%)", "hsl(199, 89%, 25%)", "hsl(199, 89%, 38%)", "hsl(199, 89%, 52%)", "hsl(199, 89%, 65%)", "hsl(199, 89%, 78%)", "hsl(199, 89%, 88%)", "hsl(199, 89%, 95%)"]
       },
       "neural-violet": {
         "role": "secondary",
         "displayName": "Neural Violet",
         "canonical": "hsl(282, 85%, 65%)",
-        "tonalRamp": ["hsl(282, 85%, 65% / 0.05)", "hsl(282, 85%, 65% / 0.3)", "hsl(282, 85%, 65%)"]
+        "tonalRamp": ["hsl(282, 85%, 15%)", "hsl(282, 85%, 28%)", "hsl(282, 85%, 45%)", "hsl(282, 85%, 65%)", "hsl(282, 85%, 75%)", "hsl(282, 85%, 85%)", "hsl(282, 85%, 92%)", "hsl(282, 85%, 97%)"]
+      },
+      "obsidian-surface": {
+        "role": "neutral",
+        "displayName": "Obsidian Surface",
+        "canonical": "hsl(222, 14%, 8%)",
+        "tonalRamp": ["#050608", "hsl(222, 14%, 8%)", "hsl(222, 14%, 14%)", "hsl(222, 14%, 22%)", "hsl(222, 14%, 32%)", "hsl(222, 14%, 48%)", "hsl(222, 14%, 68%)", "hsl(222, 14%, 88%)"]
+      },
+      "deep-system-blue": {
+        "role": "neutral",
+        "displayName": "Deep System Blue",
+        "canonical": "hsl(217, 33%, 12%)",
+        "tonalRamp": ["hsl(217, 33%, 6%)", "hsl(217, 33%, 12%)", "hsl(217, 33%, 18%)", "hsl(217, 33%, 26%)", "hsl(217, 33%, 38%)", "hsl(217, 33%, 52%)", "hsl(217, 33%, 70%)", "hsl(217, 33%, 90%)"]
+      },
+      "muted-system-blue": {
+        "role": "neutral",
+        "displayName": "Muted System Blue",
+        "canonical": "hsl(217, 33%, 14%)",
+        "tonalRamp": ["hsl(217, 33%, 7%)", "hsl(217, 33%, 14%)", "hsl(217, 33%, 21%)", "hsl(217, 33%, 30%)", "hsl(217, 33%, 44%)", "hsl(217, 33%, 58%)", "hsl(217, 33%, 75%)", "hsl(217, 33%, 92%)"]
+      },
+      "terminal-green": {
+        "role": "accent",
+        "displayName": "Terminal Green",
+        "canonical": "hsl(110, 100%, 70%)",
+        "tonalRamp": ["hsl(110, 100%, 15%)", "hsl(110, 100%, 30%)", "hsl(110, 100%, 50%)", "hsl(110, 100%, 70%)", "hsl(110, 100%, 80%)", "hsl(110, 100%, 88%)", "hsl(110, 100%, 94%)", "hsl(110, 100%, 98%)"]
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Monument",
-        "purpose": "Hero identity and full-width chapter titles."
+        "purpose": "Hero identity and monumental titles (Kanit 900)."
       },
       "headline": {
         "displayName": "Research Heading",
-        "purpose": "Project, experience, and expertise titles."
+        "purpose": "Section, project, and experience titles (Kanit 500)."
       },
       "body": {
         "displayName": "Narrative",
-        "purpose": "Readable project and research explanations."
+        "purpose": "Readable project narrative and research descriptions (Kanit 300)."
       },
       "label": {
         "displayName": "Signal Label",
-        "purpose": "Navigation, categories, tags, and actions."
+        "purpose": "Navigation, categories, tags, and action buttons (Kanit 500)."
       },
       "mono": {
         "displayName": "Technical Readout",
-        "purpose": "Terminal language and technical metadata."
+        "purpose": "Terminal language, benchmark readouts, and metadata (JetBrains Mono)."
       }
     },
     "shadows": [
@@ -88,11 +112,6 @@
         "name": "fade-scale",
         "value": "0.6s ease-out",
         "purpose": "Compact focal-element entrance."
-      },
-      {
-        "name": "signal-shift",
-        "value": "3s ease infinite",
-        "purpose": "Slow movement within cyan-violet signal gradients."
       }
     ],
     "breakpoints": [
@@ -108,9 +127,9 @@
       "name": "Contact Button",
       "kind": "button",
       "refersTo": "button-contact",
-      "description": "Primary luminous pill for direct contact.",
+      "description": "Primary luminous neural-violet pill for direct contact.",
       "html": "<a class=\"ds-contact\" href=\"#\">CONTACT ME</a>",
-      "css": ".ds-contact { display:inline-flex; align-items:center; justify-content:center; border-radius:9999px; color:#fff; padding:12px 32px; font:500 14px Kanit,sans-serif; letter-spacing:.1em; text-transform:uppercase; background:linear-gradient(123deg,#18011F 7%,#B600A8 37%,#7621B0 72%,#BE4C00 100%); box-shadow:0 4px 4px rgba(181,1,167,.25),4px 4px 12px #7721B1 inset; outline:2px solid #fff; outline-offset:-3px; }"
+      "css": ".ds-contact { display:inline-flex; align-items:center; justify-content:center; border-radius:9999px; color:#fff; padding:12px 32px; font:500 14px Kanit,sans-serif; letter-spacing:.1em; text-transform:uppercase; background:hsl(282, 85%, 65%); box-shadow:0 0 20px hsl(282, 85%, 65% / 0.3); transition:all .2s ease; } .ds-contact:hover { transform:scale(1.05); box-shadow:0 0 25px hsl(282, 85%, 65% / 0.5); }"
     },
     {
       "name": "Outline Project Action",
@@ -118,34 +137,34 @@
       "refersTo": "button-outline",
       "description": "Quiet secondary pill that preserves project hierarchy.",
       "html": "<a class=\"ds-outline\" href=\"#\">VIEW ON GITHUB</a>",
-      "css": ".ds-outline { display:inline-flex; align-items:center; justify-content:center; border:2px solid #D7E2EA; border-radius:9999px; color:#D7E2EA; padding:12px 32px; font:500 14px Kanit,sans-serif; letter-spacing:.1em; text-transform:uppercase; background:transparent; transition:background-color .2s; } .ds-outline:hover { background:rgb(215 226 234 / .1); }"
+      "css": ".ds-outline { display:inline-flex; align-items:center; justify-content:center; border:1px solid #D7E2EA; border-radius:9999px; color:#D7E2EA; padding:12px 32px; font:500 14px Kanit,sans-serif; letter-spacing:.1em; text-transform:uppercase; background:transparent; transition:all .2s ease; } .ds-outline:hover { color:hsl(199, 89%, 52%); border-color:hsl(199, 89%, 52%); background:hsl(199, 89%, 52% / 0.1); }"
     },
     {
       "name": "Technical Record Card",
       "kind": "card",
       "refersTo": "card-dark",
-      "description": "Rounded, bordered container for experience and open-source records.",
-      "html": "<article class=\"ds-record\"><h3>TRACEEON</h3><p>High-performance genomic data infrastructure.</p></article>",
-      "css": ".ds-record { border:2px solid rgb(215 226 234 / .2); border-radius:24px; background:transparent; color:#D7E2EA; padding:32px; font-family:Kanit,sans-serif; transition:border-color .2s; } .ds-record:hover { border-color:rgb(215 226 234 / .5); } .ds-record h3 { margin:0 0 8px; font-size:28px; font-weight:500; text-transform:uppercase; } .ds-record p { margin:0; max-width:65ch; color:rgb(215 226 234 / .8); font-weight:300; line-height:1.625; }"
+      "description": "Rounded, bordered container for experience, education, and project records.",
+      "html": "<article class=\"ds-record\"><h3>TRACEEON</h3><p>High-performance genomic data caching library.</p></article>",
+      "css": ".ds-record { border:1px solid hsl(217, 33%, 15%); border-radius:24px; background:hsl(222, 14%, 8%); color:#D7E2EA; padding:32px; font-family:Kanit,sans-serif; transition:border-color .2s; } .ds-record:hover { border-color:hsl(199, 89%, 52% / 0.5); } .ds-record h3 { margin:0 0 8px; font-size:24px; font-weight:600; text-transform:uppercase; } .ds-record p { margin:0; max-width:65ch; color:hsl(215, 20.2%, 70%); font-weight:300; line-height:1.625; }"
     },
     {
       "name": "Technical Chip",
       "kind": "chip",
       "refersTo": "chip",
-      "description": "Non-interactive project technology label.",
-      "html": "<span class=\"ds-chip\">RUST</span>",
-      "css": ".ds-chip { display:inline-flex; border:1px solid rgb(215 226 234 / .3); border-radius:9999px; color:#D7E2EA; padding:8px 16px; font:500 12px Kanit,sans-serif; letter-spacing:.1em; text-transform:uppercase; }"
+      "description": "Non-interactive project technology label or badge.",
+      "html": "<span class=\"ds-chip\">C++20</span>",
+      "css": ".ds-chip { display:inline-flex; border:1px solid rgba(215, 226, 234, 0.2); border-radius:8px; color:rgba(215, 226, 234, 0.9); padding:6px 12px; font:400 12px 'JetBrains Mono',monospace; letter-spacing:0.05em; background:rgba(12, 12, 12, 0.5); transition:all .2s; } .ds-chip:hover { border-color:hsl(199, 89%, 52% / 0.6); color:hsl(199, 89%, 52%); }"
     }
   ],
   "narrative": {
     "northStar": "The Cinematic Systems Observatory",
-    "overview": "A quirky, cinematic, futuristic scientific observatory where biological intelligence, computational machinery, and verifiable engineering work feel alive. Layered atmosphere creates depth while scale, overlap, contrast, and selective elevation direct attention through the portfolio.",
+    "overview": "A cinematic systems observatory for computational biology and open-source engineering, where biological intelligence, computational machinery, and verifiable low-level engineering work feel alive. Layered atmosphere creates depth while scale, overlap, contrast, and selective elevation direct attention through inspectable evidence.",
     "keyCharacteristics": [
-      "Monumental uppercase typography",
-      "Sparse bioelectric cyan and neural violet signals",
-      "Living 3D particle environment",
-      "Rounded overlapping cinematic chapters",
-      "Technical mono readouts grounded in evidence"
+      "Monumental uppercase Kanit display typography",
+      "Sparse bioelectric cyan and neural violet signals attached to state and energy",
+      "Living 3D WebGL particle observatory with reduced-motion gating",
+      "Rounded overlapping cinematic chapters with unnested readable hierarchy",
+      "Technical JetBrains Mono readouts grounded in verifiable benchmark facts"
     ],
     "rules": [
       {
@@ -154,27 +173,34 @@
         "section": "colors"
       },
       {
+        "name": "The Alternating Chapter Rule",
+        "body": "White is a deliberate narrative interruption, not a general-purpose card color within dark sections.",
+        "section": "colors"
+      },
+      {
         "name": "The Monument and Readout Rule",
-        "body": "Kanit creates the monument; JetBrains Mono supplies literal technical readouts.",
+        "body": "Kanit creates the monument; JetBrains Mono supplies the readout.",
         "section": "typography"
       },
       {
         "name": "The Eye-Path Rule",
-        "body": "Elevation identifies the current focal point or next action and is removed when it no longer clarifies hierarchy.",
+        "body": "Elevation must identify the current focal point or next action.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "Preserve the contrast between cinematic spectacle and inspectable evidence.",
-      "Use scale, overlap, tonal chapters, and selective elevation to create a clear eye path.",
-      "Keep cyan and violet attached to signals, biological energy, and computational connection.",
-      "Use fluid type and responsive spacing so monumental hierarchy survives small screens."
+      "Preserve the contrast between cinematic spectacle and inspectable project evidence.",
+      "Use scale, overlap, tonal chapters, and selective elevation to create a clear top-to-bottom eye path.",
+      "Keep cyan and violet attached to signals, state, biological energy, and computational connection.",
+      "Use fluid type and responsive spacing so the monumental hierarchy survives small screens.",
+      "Reserve JetBrains Mono for commands, code-adjacent metadata, dates, and technical readouts."
     ],
     "donts": [
-      "Do not flatten the interface into a generic grid of same-sized cards.",
-      "Do not distribute glow, shadow, blur, or 3D effects evenly.",
-      "Do not introduce unrelated hues without deliberately redefining the system.",
-      "Do not fabricate scientific imagery, metrics, endorsements, or claims."
+      "Don't flatten the interface into a generic grid of same-sized cards.",
+      "Don't distribute glow, shadow, blur, or 3D effects evenly; atmosphere needs focal hierarchy.",
+      "Don't introduce unrelated hues or warm neutral surfaces without redefining the system deliberately.",
+      "Don't fabricate scientific imagery, metrics, endorsements, or claims to create visual drama.",
+      "Don't let particle motion, sticky stacking, or animated gradients compromise reading, focus visibility, or reduced-motion expectations."
     ]
   }
 }
